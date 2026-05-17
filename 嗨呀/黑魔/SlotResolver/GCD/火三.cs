@@ -9,8 +9,7 @@ public class 火三 : ISlotResolver
     {
         if (HelperRuntime.GetCurrentLevel() < 60) return (int)CheckResult.等级不足;
 
-        if (BLMHelper.冰状态 && (BLMHelper.火状态 || (Data.Me.Object?.CurrentMp < 800 || BLMHelper.耀星层数 == 6)) && BLMHelper.群怪模式)
-            return (int)BLMHelper.爆炎;
+        if (Data.Me.IsMoving && !BLMHelper.可瞬发 && !BLMHelper.Has火苗) return (int)CheckResult.移动中;
 
         if (!BLMHelper.火状态 && !BLMHelper.冰状态 && Data.Me.Object?.CurrentMp >= 9800)
             return (int)BLMHelper.爆炎;
@@ -18,10 +17,8 @@ public class 火三 : ISlotResolver
         if (BLMHelper.火状态 && BLMHelper.火层数 < 3 && BLMHelper.Has火苗)
             return (int)BLMHelper.爆炎;
 
-        if (BLMHelper.冰状态 && Data.Me.Object?.CurrentMp < 800)
+        if (BLMHelper.冰状态 && Data.Me.Object?.CurrentMp > 10000 && BLMHelper.冰针数 >= 3)
             return (int)BLMHelper.爆炎;
-
-        if (Data.Me.IsMoving && !BLMHelper.可瞬发) return (int)CheckResult.移动中;
 
         return (int)CheckResult.状态不符;
     }

@@ -13,12 +13,14 @@ public class 绝望 : ISlotResolver
 
         if (QTHelper.IsEnabled(QTKey.AOE) && BLMHelper.群怪模式) return (int)CheckResult.群怪模式;
 
-        if (Data.Me.IsMoving && !BLMHelper.可瞬发) return (int)CheckResult.移动中;
+        if (Data.Me.IsMoving && !BLMHelper.可瞬发 && HelperRuntime.GetCurrentLevel() < 100) return (int)CheckResult.移动中;
 
         var mp = Data.Me.Object?.CurrentMp;
-        if (mp < 800 || mp >= 2400) return (int)CheckResult.资源不足;
+        if (mp < 800 ) return (int)CheckResult.资源不足;
 
-        if (HelperRuntime.GetCurrentLevel() >= 100 && BLMHelper.耀星层数 >= 5) return (int)CheckResult.资源不足;
+        if (mp >= 2400 && BLMHelper.悖论指示) return (int)CheckResult.资源不足;
+
+        if (HelperRuntime.GetCurrentLevel() >= 100 && BLMHelper.耀星层数 >= 3) return (int)CheckResult.资源不足;
 
         return (int)BLMHelper.绝望;
     }

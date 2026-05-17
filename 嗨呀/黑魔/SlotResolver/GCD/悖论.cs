@@ -13,7 +13,7 @@ public class 悖论 : ISlotResolver
 
         if (QTHelper.IsEnabled(QTKey.AOE) && BLMHelper.群怪模式) return (int)CheckResult.群怪模式;
 
-        if (Data.Me.IsMoving && !BLMHelper.可瞬发) return (int)CheckResult.移动中;
+        if (Data.Me.IsMoving && BLMHelper.可瞬发) return (int)CheckResult.移动中;
 
         if (!BLMHelper.悖论指示) return (int)CheckResult.资源不足;
 

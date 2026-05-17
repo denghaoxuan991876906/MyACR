@@ -9,13 +9,16 @@ public class 火四 : ISlotResolver
     {
         if (HelperRuntime.GetCurrentLevel() < 60) return (int)CheckResult.等级不足;
 
-        if (!BLMHelper.火状态) return (int)CheckResult.状态不符;
+        if (!BLMHelper.火状态 || BLMHelper.火层数 < 3) return (int)CheckResult.状态不符;
 
+        if (Data.Me.Object?.CurrentMp < 1600) return (int)CheckResult.资源不足;
+        
         if (QTHelper.IsEnabled(QTKey.AOE) && BLMHelper.群怪模式) return (int)CheckResult.群怪模式;
 
         if (Data.Me.IsMoving && !BLMHelper.可瞬发) return (int)CheckResult.移动中;
 
-        if (Data.Me.Object?.CurrentMp < 1600) return (int)CheckResult.资源不足;
+        if (Data.Me.Object?.CurrentMp <= 3200 && BLMHelper.悖论指示) return (int)CheckResult.资源不足;
+
 
         return (int)BLMHelper.炽焰;
     }
