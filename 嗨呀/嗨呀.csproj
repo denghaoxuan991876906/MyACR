@@ -15,7 +15,7 @@
         </ProjectReference>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="HiAuRo.Sdk" Version="0.1.41" />
+      <PackageReference Include="HiAuRo.Sdk" Version="0.1.42" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="黑魔\SlotResolver\Ability\" />
