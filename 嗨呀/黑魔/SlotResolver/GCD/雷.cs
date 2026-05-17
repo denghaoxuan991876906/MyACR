@@ -9,7 +9,7 @@ public class 雷 : ISlotResolver
     {
         if (HelperRuntime.GetCurrentLevel() < 45) return (int)CheckResult.等级不足;
 
-        if (BLMHelper.群怪模式) return (int)CheckResult.群怪模式;
+        if (QTHelper.IsEnabled(QTKey.AOE) && BLMHelper.群怪模式) return (int)CheckResult.群怪模式;
 
         if (!QTHelper.IsEnabled(QTKey.Dot)) return (int)CheckResult.QT关闭;
 

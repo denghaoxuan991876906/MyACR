@@ -1,4 +1,5 @@
 using 嗨呀.黑魔.SlotResolver.BLMData;
+using 嗨呀.黑魔.UI;
 
 namespace 嗨呀.黑魔.SlotResolver.GCD;
 
@@ -8,7 +9,7 @@ public class 异言 : ISlotResolver
     {
         if (HelperRuntime.GetCurrentLevel() < 80) return (int)CheckResult.等级不足;
 
-        if (BLMHelper.群怪模式) return (int)CheckResult.群怪模式;
+        if (QTHelper.IsEnabled(QTKey.AOE) && BLMHelper.群怪模式) return (int)CheckResult.群怪模式;
 
         if (BLMHelper.通晓数 <= 0) return (int)CheckResult.资源不足;
 

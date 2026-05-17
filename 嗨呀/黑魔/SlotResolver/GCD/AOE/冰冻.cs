@@ -1,4 +1,5 @@
 using 嗨呀.黑魔.SlotResolver.BLMData;
+using 嗨呀.黑魔.UI;
 
 namespace 嗨呀.黑魔.SlotResolver.GCD.AOE;
 
@@ -7,6 +8,8 @@ public class 冰冻 : ISlotResolver
     public int Check()
     {
         if (HelperRuntime.GetCurrentLevel() < 12) return (int)CheckResult.等级不足;
+
+        if (!QTHelper.IsEnabled(QTKey.AOE)) return (int)CheckResult.QT关闭;
 
         if (!BLMHelper.群怪模式) return (int)CheckResult.群怪模式;
 

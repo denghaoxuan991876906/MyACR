@@ -9,6 +9,8 @@ public class 雷群 : ISlotResolver
     {
         if (HelperRuntime.GetCurrentLevel() < 64) return (int)CheckResult.等级不足;
 
+        if (!QTHelper.IsEnabled(QTKey.AOE)) return (int)CheckResult.QT关闭;
+
         if (!BLMHelper.群怪模式) return (int)CheckResult.群怪模式;
 
         if (!QTHelper.IsEnabled(QTKey.Dot)) return (int)CheckResult.QT关闭;
