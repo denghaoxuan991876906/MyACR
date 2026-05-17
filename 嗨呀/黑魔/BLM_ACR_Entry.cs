@@ -1,14 +1,13 @@
-﻿using HiAuRo.ACR;
-using HiAuRo.Runtime;
+﻿using 嗨呀.黑魔.UI;
 using 嗨呀.黑魔.设置;
 
 namespace 嗨呀.黑魔;
 
-public class BLM_ACR_Entry : IRotationEntry
+public class BLM_ACR_Entry : IRotationEntry,ISettingsProvider<BLM_Setting>
 {
     public Rotation? Build(string settingFolder)
     {
-        BLM_Setting.Init(settingFolder);
+        
         return new Rotation
         {
             TargetJob = Jobs.BLM,
@@ -21,7 +20,8 @@ public class BLM_ACR_Entry : IRotationEntry
 
     public IRotationUI? GetRotationUI()
     {
-        return null;
+        
+        return new BLMRotationUI() ;
     }
 
     public void OnDrawSetting()
@@ -36,7 +36,7 @@ public class BLM_ACR_Entry : IRotationEntry
 
     public void OnEnterRotation()
     {
-        
+        Hi.Print("欢迎使用嗨呀的黑魔ACR");
     }
 
     public void OnExitRotation()
@@ -47,4 +47,5 @@ public class BLM_ACR_Entry : IRotationEntry
     public string AuthorName { get; } = "嗨呀";
     public bool UseCustomUi { get; }  = false;
     public IEnumerable<Jobs> TargetJobs => [Jobs.BLM];
+    public BLM_Setting Settings { get; set; } = new BLM_Setting();
 }

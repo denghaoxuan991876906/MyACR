@@ -15,12 +15,11 @@
         </ProjectReference>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="HiAuRo.Sdk" Version="0.1.30" />
+      <PackageReference Include="HiAuRo.Sdk" Version="0.1.41" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="黑魔\SlotResolver\Ability\" />
       <Folder Include="黑魔\SlotResolver\GCD\" />
-      <Folder Include="黑魔\UI\" />
       <Folder Include="黑魔\起手\" />
     </ItemGroup>
 </Project>
