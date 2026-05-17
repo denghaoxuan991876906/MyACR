@@ -35,11 +35,11 @@ public class 瞬发触发器 : ISlotResolver
             if (BLMHelper.Has雷云 && BLMHelper.补dot())
             {
                 var aoeThunder = level >= 92 ? BLMHelper.高震雷 : level >= 64 ? BLMHelper.霹雷 : BLMHelper.震雷;
-                return (int)HelperRuntime.GetActionChange(aoeThunder);
+                return (int)aoeThunder;
             }
 
             if (BLMHelper.火状态 && BLMHelper.Has火苗 && BLMHelper.火层数 < 3)
-                return (int)HelperRuntime.GetActionChange(BLMHelper.高烈炎);
+                return level >= 94 ? (int)BLMHelper.高烈炎 : (int)BLMHelper.烈炎;
 
             if (BLMHelper.火状态 && Data.Me.Object?.CurrentMp < 800)
                 return (int)BLMHelper.核爆;
@@ -48,7 +48,7 @@ public class 瞬发触发器 : ISlotResolver
                 return (int)BLMHelper.秽浊;
 
             if (BLMHelper.冰状态 && BLMHelper.冰层数 < 3)
-                return (int)HelperRuntime.GetActionChange(BLMHelper.高冰冻);
+                return level >= 94 ? (int)BLMHelper.高冰冻 : (int)BLMHelper.冰冻;
 
             return -1;
         }
@@ -56,11 +56,11 @@ public class 瞬发触发器 : ISlotResolver
         if (BLMHelper.Has雷云 && BLMHelper.补dot())
         {
             var thunderId = level >= 92 ? BLMHelper.高闪雷 : level >= 45 ? BLMHelper.暴雷 : BLMHelper.闪雷;
-            return (int)HelperRuntime.GetActionChange(thunderId);
+            return (int)thunderId;
         }
 
         if (BLMHelper.火状态 && BLMHelper.Has火苗 && BLMHelper.火层数 < 3)
-            return (int)HelperRuntime.GetActionChange(BLMHelper.爆炎);
+            return (int)BLMHelper.爆炎;
 
         if (BLMHelper.悖论指示)
             return (int)BLMHelper.悖论;
@@ -78,7 +78,7 @@ public class 瞬发触发器 : ISlotResolver
         if (BLMHelper.补dot() && level >= 45)
         {
             var thunderId = level >= 92 ? BLMHelper.高闪雷 : level >= 45 ? BLMHelper.暴雷 : BLMHelper.闪雷;
-            return (int)HelperRuntime.GetActionChange(thunderId);
+            return (int)thunderId;
         }
 
         return -1;

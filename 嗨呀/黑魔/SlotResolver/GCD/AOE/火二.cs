@@ -19,12 +19,14 @@ public class 火二 : ISlotResolver
 
         if (Data.Me.Object?.CurrentMp < 800) return (int)CheckResult.资源不足;
 
-        return (int)HelperRuntime.GetActionChange(BLMHelper.烈炎);
+        var level = HelperRuntime.GetCurrentLevel();
+        return level >= 94 ? (int)BLMHelper.高烈炎 : (int)BLMHelper.烈炎;
     }
 
     public void Build(Slot slot)
     {
-        var spellId = HelperRuntime.GetActionChange(BLMHelper.烈炎);
-        slot.Add(new Spell { Id = spellId, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
+        var level = HelperRuntime.GetCurrentLevel();
+        var id = level >= 94 ? BLMHelper.高烈炎 : BLMHelper.烈炎;
+        slot.Add(new Spell { Id = id, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
     }
 }

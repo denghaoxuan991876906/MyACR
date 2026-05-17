@@ -12,13 +12,13 @@ public class 冰三 : ISlotResolver
         if (Data.Me.IsMoving && !BLMHelper.可瞬发) return (int)CheckResult.移动中;
 
         if (BLMHelper.火状态 && Data.Me.Object?.CurrentMp < 800 && !BLMHelper.群怪模式)
-            return (int)HelperRuntime.GetActionChange(BLMHelper.冰封);
+            return (int)BLMHelper.冰封;
 
         if (BLMHelper.冰状态 && BLMHelper.冰层数 < 3)
-            return (int)HelperRuntime.GetActionChange(BLMHelper.冰封);
+            return (int)BLMHelper.冰封;
 
         if (!BLMHelper.火状态 && !BLMHelper.冰状态)
-            return (int)HelperRuntime.GetActionChange(BLMHelper.冰封);
+            return (int)BLMHelper.冰封;
 
         if (QTHelper.IsEnabled(QTKey.AOE) && BLMHelper.群怪模式) return (int)CheckResult.群怪模式;
 
@@ -27,7 +27,7 @@ public class 冰三 : ISlotResolver
 
     public void Build(Slot slot)
     {
-        var spellId = HelperRuntime.GetActionChange(BLMHelper.冰封);
+        var spellId = BLMHelper.冰封;
         slot.Add(new Spell { Id = spellId, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
     }
 }

@@ -17,12 +17,12 @@ public class 火四 : ISlotResolver
 
         if (Data.Me.Object?.CurrentMp < 1600) return (int)CheckResult.资源不足;
 
-        return (int)HelperRuntime.GetActionChange(BLMHelper.炽焰);
+        return (int)BLMHelper.炽焰;
     }
 
     public void Build(Slot slot)
     {
-        var spellId = HelperRuntime.GetActionChange(BLMHelper.炽焰);
+        var spellId = BLMHelper.炽焰;
         slot.Add(new Spell { Id = spellId, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
     }
 }

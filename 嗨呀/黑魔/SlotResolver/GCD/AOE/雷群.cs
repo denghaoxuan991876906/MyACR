@@ -30,7 +30,7 @@ public class 雷群 : ISlotResolver
         else
             skillId = BLMHelper.震雷;
 
-        return (int)HelperRuntime.GetActionChange(skillId);
+        return (int)skillId;
     }
 
     public void Build(Slot slot)
@@ -44,7 +44,6 @@ public class 雷群 : ISlotResolver
         else
             skillId = BLMHelper.震雷;
 
-        var spellId = HelperRuntime.GetActionChange(skillId);
-        slot.Add(new Spell { Id = spellId, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
+        slot.Add(new Spell { Id = skillId, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
     }
 }
