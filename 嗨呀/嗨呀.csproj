@@ -1,4 +1,4 @@
-﻿<Project Sdk="Dalamud.CN.NET.Sdk/15.0.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <AssemblyName>嗨呀</AssemblyName>
@@ -8,6 +8,12 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Use_DalamudPackager>false</Use_DalamudPackager>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <OutputPath>E:\HiAuRo\HiAuRo\bin\x64\Debug\ACR\嗨呀</OutputPath>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\Helper\HiAuRo.Helper\HiAuRo.Helper.csproj">
@@ -15,7 +21,7 @@
         </ProjectReference>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="HiAuRo.Sdk" Version="0.1.42">
+      <PackageReference Include="HiAuRo.Sdk" Version="0.1.44">
             <ExcludeAssets>runtime</ExcludeAssets>
         </PackageReference>
     </ItemGroup>
