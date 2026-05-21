@@ -19,6 +19,15 @@ public class 火四 : ISlotResolver
 
         if (BLMHelper.耀星层数 >= 6) return (int)CheckResult.状态不符;
 
+        if (BLM_BattleData.Instance.火阶段已放耀星) return (int)CheckResult.状态不符;
+
+        if (HelperRuntime.GetCurrentLevel() >= 100 && !BLM_BattleData.Instance.能六火四 && BLMHelper.耀星层数 >= 3)
+        {
+            var fire4Cost = BLMHelper.冰针数 > 0 ? 800 : 1600;
+            if (Data.Me.Object?.CurrentMp - fire4Cost < 800)
+                return (int)CheckResult.资源不足;
+        }
+
         return (int)BLMHelper.炽焰;
     }
 

@@ -13,14 +13,25 @@ public class 星灵移位 : ISlotResolver
 
         if (!BLMHelper.火状态 && !BLMHelper.冰状态) return (int)CheckResult.状态不符;
 
+        if (HelperRuntime.GetCurrentLevel() < 80) return (int)CheckResult.状态不符;
+
         if (BLMHelper.火状态)
         {
+            if (HelperRuntime.GetCurrentLevel() >= 100 && !BLM_BattleData.Instance.火阶段已放耀星)
+                return (int)CheckResult.状态不符;
+
             if (CooldownHelper.GetCooldownRemaining(BLMHelper.魔泉) <= 0 && QTHelper.IsEnabled("墨泉"))
                 return (int)CheckResult.状态不符;
 
-            if (Data.Me.Object?.CurrentMp >= 800) return (int)CheckResult.状态不符;
+            if (Data.Me.Object?.CurrentMp >= 800) return (int)CheckResult.资源不足;
 
-            if (!BLM_BattleData.Instance.火阶段已放耀星) return (int)CheckResult.状态不符;
+            if (HelperRuntime.GetCurrentLevel() >= 100)
+            {
+                var hasInstantAbility = CooldownHelper.GetCooldownRemaining(BLMHelper.即可咏唱) <= 0
+                    || CooldownHelper.GetCharges(BLMHelper.三连咏唱) >= 1;
+                if (!hasInstantAbility && !Data.Me.IsMoving)
+                    return (int)CheckResult.状态不符;
+            }
 
             return 1;
         }

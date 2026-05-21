@@ -17,7 +17,7 @@ public class 火三 : ISlotResolver
         if (BLMHelper.火状态 && BLMHelper.火层数 < 3 && BLMHelper.Has火苗)
             return (int)BLMHelper.爆炎;
 
-        if (BLMHelper.冰状态 && Data.Me.Object?.CurrentMp > 10000 && BLMHelper.冰针数 >= 3)
+        if (BLMHelper.冰状态 && BLM_BattleData.Instance.已回复蓝量 >= 10000 && BLMHelper.冰针数 >= 3)
             return (int)BLMHelper.爆炎;
 
         return (int)CheckResult.状态不符;

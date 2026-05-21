@@ -11,8 +11,19 @@ public class 冰三 : ISlotResolver
 
         if (Data.Me.IsMoving && !BLMHelper.可瞬发) return (int)CheckResult.移动中;
 
-        if (BLMHelper.火状态 && Data.Me.Object?.CurrentMp < 800 && !BLMHelper.群怪模式 && BLMHelper.耀星层数 <6)
-            return (int)BLMHelper.冰封;
+        if (BLMHelper.火状态 && !BLMHelper.群怪模式 && BLMHelper.耀星层数 < 6)
+        {
+            if (HelperRuntime.GetCurrentLevel() < 80)
+            {
+                var fire4Cost = BLMHelper.冰针数 > 0 ? 800 : 1600;
+                if (Data.Me.Object?.CurrentMp < fire4Cost)
+                    return (int)BLMHelper.冰封;
+            }
+            else if (Data.Me.Object?.CurrentMp < 800)
+            {
+                return (int)BLMHelper.冰封;
+            }
+        }
 
         if (BLMHelper.冰状态 && BLMHelper.冰层数 < 3)
             return (int)BLMHelper.冰封;

@@ -20,8 +20,8 @@ public class 三连咏唱 : ISlotResolver
         if (BLMHelper.火状态 && BLMHelper.火层数 >= 3 && BLMHelper.耀星层数 >= 5 && !BLMHelper.群怪模式)
             return 1;
 
-        if (BLMHelper.火状态 && BLMHelper.群怪模式 && Data.Me.Object?.CurrentMp < 800 && BLMHelper.耀星层数 == 6)
-            return 800;
+        if (BLMHelper.火状态 && BLMHelper.群怪模式 && CooldownHelper.GetCharges(BLMHelper.三连咏唱) >= 2)
+            return 1;
 
         if (BLMHelper.冰状态 && BLMHelper.冰层数 < 3) return 1;
 

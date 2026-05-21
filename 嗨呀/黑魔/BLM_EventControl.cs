@@ -34,7 +34,10 @@ public class BLM_EventControl : IRotationEventHandler
         bd.AfterSpell.Add(spell.Id);
 
         if (spell.Id is BLMHelper.魔泉)
+        {
             bd.已回复蓝量 += 10000;
+            bd.能六火四 = true;
+        }
 
         if (spell.Id is BLMHelper.星灵移位)
             bd.已回复蓝量 = 0;
@@ -90,6 +93,14 @@ public class BLM_EventControl : IRotationEventHandler
                 bd.AfterSpell.Clear();
                 bd.已回复蓝量 = 0;
                 bd.火阶段已放耀星 = false;
+            }
+
+            if (bd.上次冰火状态 == 1 && status == 2)
+            {
+                var startMP = Math.Min(bd.已回复蓝量, 10000);
+                var ice = (int)BLMHelper.冰针数;
+                var mpForSix = Math.Min(6, ice) * 800 + Math.Max(0, 6 - ice) * 1600;
+                bd.能六火四 = startMP >= mpForSix + 800;
             }
             bd.上次冰火状态 = status;
         }

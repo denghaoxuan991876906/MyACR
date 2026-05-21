@@ -23,7 +23,8 @@ public class 绝望 : ISlotResolver
             && bd.前一gcd == BLMHelper.冰澈 && !bd.已使用瞬发)
             return (int)BLMHelper.绝望;
 
-        if (!bd.火阶段已放耀星) return (int)CheckResult.状态不符;
+        if (HelperRuntime.GetCurrentLevel() >= 100 && !bd.火阶段已放耀星)
+            return (int)CheckResult.状态不符;
 
         return (int)BLMHelper.绝望;
     }

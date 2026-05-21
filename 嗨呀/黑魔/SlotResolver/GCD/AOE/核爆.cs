@@ -16,7 +16,20 @@ public class 核爆 : ISlotResolver
         if (Data.Me.IsMoving && !BLMHelper.可瞬发) return (int)CheckResult.移动中;
 
         if (Data.Me.CurrentLevel >= 100 && BLMHelper.耀星层数 >= 3 && BLMHelper.耀星层数 < 6 &&
-            Data.Me.Object?.CurrentMp < 3200 && !BLMHelper.群怪模式) return (int)BLMHelper.核爆;
+            !BLMHelper.群怪模式)
+        {
+            var bd = BLM_BattleData.Instance;
+            if (!bd.能六火四)
+            {
+                var fire4Cost = BLMHelper.冰针数 > 0 ? 800 : 1600;
+                if (Data.Me.Object?.CurrentMp < fire4Cost + 800)
+                    return (int)BLMHelper.核爆;
+            }
+            else if (Data.Me.Object?.CurrentMp < 3200)
+            {
+                return (int)BLMHelper.核爆;
+            }
+        }
         
         if (!QTHelper.IsEnabled(QTKey.AOE)) return (int)CheckResult.QT关闭;
 

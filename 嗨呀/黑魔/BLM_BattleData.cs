@@ -13,6 +13,7 @@ public class BLM_BattleData
     public bool 需要瞬发gcd { get; set; }
     public bool 已使用瞬发 { get; set; }
     public bool 火阶段已放耀星 { get; set; }
+    public bool 能六火四 { get; set; } = true;
 
     public void Reset()
     {
@@ -25,6 +26,7 @@ public class BLM_BattleData
         需要瞬发gcd = false;
         已使用瞬发 = false;
         火阶段已放耀星 = false;
+        能六火四 = true;
     }
 
     public static bool 在发呆()

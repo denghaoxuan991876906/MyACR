@@ -20,7 +20,7 @@ public class 即刻 : ISlotResolver
 
         if (BLMHelper.冰状态 && BLMHelper.冰层数 < 3) return 1;
 
-        if (BLMHelper.群怪模式 && BLMHelper.火状态 && BLMHelper.耀星层数 == 6) return 1;
+        if (BLMHelper.群怪模式 && BLMHelper.火状态) return 1;
 
         return (int)CheckResult.状态不符;
     }

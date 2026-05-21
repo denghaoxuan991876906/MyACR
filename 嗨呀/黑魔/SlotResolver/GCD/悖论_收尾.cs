@@ -15,6 +15,10 @@ public class 悖论_收尾 : ISlotResolver
 
         if (QTHelper.IsEnabled(QTKey.AOE) && BLMHelper.群怪模式) return (int)CheckResult.群怪模式;
 
+        if (QTHelper.IsEnabled(QTKey.减少火悖论)) return (int)CheckResult.QT关闭;
+
+        if (BLMHelper.Has火苗) return (int)CheckResult.状态不符;
+
         if (Data.Me.IsMoving && !BLMHelper.可瞬发) return (int)CheckResult.移动中;
 
         if (Data.Me.Object?.CurrentMp < 2400) return (int)CheckResult.资源不足;

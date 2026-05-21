@@ -13,6 +13,8 @@ public class 悖论_冰 : ISlotResolver
 
         if (QTHelper.IsEnabled(QTKey.AOE) && BLMHelper.群怪模式) return (int)CheckResult.群怪模式;
 
+        if (QTHelper.IsEnabled(QTKey.减少冰悖论)) return (int)CheckResult.QT关闭;
+
         if (!BLMHelper.悖论指示) return (int)CheckResult.资源不足;
 
         if (BLMHelper.冰层数 < 3) return (int)CheckResult.状态不符;
