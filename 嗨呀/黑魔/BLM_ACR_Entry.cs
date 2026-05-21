@@ -22,20 +22,20 @@ public class BLM_ACR_Entry : IRotationEntry, ISettingsProvider<BLM_Setting>
                 // GCD
                 new SlotResolverData { Resolver = new 瞬发触发器(), Mode = SlotMode.Gcd },
                 new SlotResolverData { Resolver = new 异言(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 秽浊(), Mode = SlotMode.Gcd },
                 new SlotResolverData { Resolver = new 雷群(), Mode = SlotMode.Gcd },
                 new SlotResolverData { Resolver = new 雷(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 悖论_起手(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 悖论_收尾(), Mode = SlotMode.Gcd },
                 new SlotResolverData { Resolver = new 耀星(), Mode = SlotMode.Gcd },
                 new SlotResolverData { Resolver = new 核爆(), Mode = SlotMode.Gcd },
                 new SlotResolverData { Resolver = new 火三(), Mode = SlotMode.Gcd },
                 new SlotResolverData { Resolver = new 火四(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 悖论(), Mode = SlotMode.Gcd },
                 new SlotResolverData { Resolver = new 绝望(), Mode = SlotMode.Gcd },
                 new SlotResolverData { Resolver = new 冰冻(), Mode = SlotMode.Gcd },
                 new SlotResolverData { Resolver = new 玄冰(), Mode = SlotMode.Gcd },
                 new SlotResolverData { Resolver = new 冰三(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 悖论_冰(), Mode = SlotMode.Gcd },
                 new SlotResolverData { Resolver = new 冰澈(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 火二(), Mode = SlotMode.Gcd },
                 new SlotResolverData { Resolver = new 灵极魂(), Mode = SlotMode.Gcd },
 
                 // Ability

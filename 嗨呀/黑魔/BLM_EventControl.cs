@@ -47,6 +47,9 @@ public class BLM_EventControl : IRotationEventHandler
                 bd.已回复蓝量 += 2500;
         }
 
+        if (spell.Id is BLMHelper.耀星)
+            bd.火阶段已放耀星 = true;
+
         if (spell.Id is BLMHelper.冰封 or BLMHelper.高冰冻 or BLMHelper.冰冻)
         {
             if (_释放技能时状态 == 2)
@@ -86,6 +89,7 @@ public class BLM_EventControl : IRotationEventHandler
             {
                 bd.AfterSpell.Clear();
                 bd.已回复蓝量 = 0;
+                bd.火阶段已放耀星 = false;
             }
             bd.上次冰火状态 = status;
         }

@@ -16,11 +16,14 @@ public class 绝望 : ISlotResolver
         if (Data.Me.IsMoving && !BLMHelper.可瞬发 && HelperRuntime.GetCurrentLevel() < 100) return (int)CheckResult.移动中;
 
         var mp = Data.Me.Object?.CurrentMp;
-        if (mp < 800 ) return (int)CheckResult.资源不足;
+        if (mp < 800) return (int)CheckResult.资源不足;
 
-        if (mp >= 2400 && BLMHelper.悖论指示) return (int)CheckResult.资源不足;
+        var bd = BLM_BattleData.Instance;
+        if (QTHelper.IsEnabled(QTKey.高级循环) && BLMHelper.火状态
+            && bd.前一gcd == BLMHelper.冰澈 && !bd.已使用瞬发)
+            return (int)BLMHelper.绝望;
 
-        if (HelperRuntime.GetCurrentLevel() >= 100 && BLMHelper.耀星层数 >= 3) return (int)CheckResult.资源不足;
+        if (!bd.火阶段已放耀星) return (int)CheckResult.状态不符;
 
         return (int)BLMHelper.绝望;
     }

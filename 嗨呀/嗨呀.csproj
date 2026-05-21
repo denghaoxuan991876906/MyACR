@@ -13,7 +13,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <OutputPath>E:\HiAuRo\HiAuRo\bin\x64\Debug\ACR\嗨呀</OutputPath>
+      <OutputPath>E:\DalamudPlugins\HiAuRo\HiAuRo\bin\x64\Debug\ACR\嗨呀\</OutputPath>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\Helper\HiAuRo.Helper\HiAuRo.Helper.csproj">
@@ -28,6 +28,5 @@
     <ItemGroup>
       <Folder Include="黑魔\SlotResolver\Ability\" />
       <Folder Include="黑魔\SlotResolver\GCD\" />
-      <Folder Include="黑魔\起手\" />
     </ItemGroup>
 </Project>

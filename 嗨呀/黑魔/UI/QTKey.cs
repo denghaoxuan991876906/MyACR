@@ -9,4 +9,5 @@ public class QTKey
     public const string 通晓 = "通晓";
     public const string Dot = "Dot";
     public const string TTK = "__builtin_ttk";
+    public const string 高级循环 = "高级循环";
 }

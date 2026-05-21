@@ -15,9 +15,10 @@ public class 冰澈 : ISlotResolver
 
         if (Data.Me.IsMoving && !BLMHelper.可瞬发) return (int)CheckResult.移动中;
 
-        if (BLMHelper.冰针数 >= 3 && Data.Me.Object?.CurrentMp < 10000) return (int)CheckResult.资源不足;
-
         if (BLMHelper.冰层数 < 3) return (int)CheckResult.状态不符;
+
+        if (BLMHelper.冰针数 >= 3 && BLM_BattleData.Instance.已回复蓝量 >= 10000)
+            return (int)CheckResult.资源不足;
 
         return (int)BLMHelper.冰澈;
     }
