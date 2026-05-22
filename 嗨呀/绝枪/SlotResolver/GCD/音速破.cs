@@ -13,7 +13,7 @@ public class 音速破 : ISlotResolver
 
         if (!GNBHelper.Has无情) return (int)CheckResult.状态不符;
 
-        if (HelperRuntime.HasStatusOnTarget(3161)) return (int)CheckResult.状态不符;
+        if (HelperRuntime.GetStatusTimeLeftOnTarget(3161) >= 3f) return (int)CheckResult.状态不符;
 
         if (HelperRuntime.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
 
