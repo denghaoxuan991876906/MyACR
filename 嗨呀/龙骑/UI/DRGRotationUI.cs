@@ -11,8 +11,8 @@ public class DRGRotationUI : IRotationUI
         builder.AddBuiltinQt(BuiltinQt.AoE);
         builder.AddBuiltinQt(BuiltinQt.TTK);
 
-        builder.AddQtToggle(QTKey.爆发, "爆发模式", true);
-        builder.AddQtToggle(QTKey.真北, "自动真北", true);
-        builder.AddQtToggle(QTKey.自动减伤, "自动减伤", true);
+        builder.AddQtToggle(QTKey.爆发, true);
+        builder.AddQtToggle(QTKey.真北, true);
+        builder.AddQtToggle(QTKey.自动减伤, true);
     }
 }

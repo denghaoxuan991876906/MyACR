@@ -11,16 +11,16 @@ public class BLMRotationUI : IRotationUI
         builder.AddBuiltinQt(BuiltinQt.AoE, true);
         builder.AddBuiltinQt(BuiltinQt.TTK, false);
 
-        builder.AddQtToggle(QTKey.三连, "使用三连", true);
-        builder.AddQtToggle(QTKey.墨泉, "使用墨泉", true);
-        builder.AddQtToggle(QTKey.黑魔纹, "使用黑魔纹", true);
-        builder.AddQtToggle(QTKey.通晓, "使用通晓技能", true);
-        builder.AddQtToggle(QTKey.Dot, "使用雷Dot", true);
-        builder.AddQtToggle(QTKey.高级循环, "高级循环(白嫖绝望)", false);
-        builder.AddQtToggle(QTKey.减少冰悖论, "减少冰阶段悖论", false);
-        builder.AddQtToggle(QTKey.减少火悖论, "减少火阶段悖论", false);
+        builder.AddQtToggle(QTKey.三连,  true);
+        builder.AddQtToggle(QTKey.墨泉, true);
+        builder.AddQtToggle(QTKey.黑魔纹, true);
+        builder.AddQtToggle(QTKey.通晓, true);
+        builder.AddQtToggle(QTKey.Dot, true);
+        builder.AddQtToggle(QTKey.高级循环, false);
+        builder.AddQtToggle(QTKey.减少冰悖论, false);
+        builder.AddQtToggle(QTKey.减少火悖论, false);
         
-        builder.AddQtHotkey("爆发药", new HotkeyResolver_吃药("item","爆发药", 49237));
+        builder.AddQtHotkey("爆发药", new HotkeyResolver_吃药("爆发药", 49237));
         
 
     }

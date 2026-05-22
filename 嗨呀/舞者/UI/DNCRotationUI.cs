@@ -10,11 +10,11 @@ public class DNCRotationUI : IRotationUI
         builder.AddBuiltinQt(BuiltinQt.Mitigation);
         builder.AddBuiltinQt(BuiltinQt.AoE);
 
-        builder.AddQtToggle(QTKey.小舞, "标准舞步", true);
-        builder.AddQtToggle(QTKey.大舞, "技巧舞步", true);
-        builder.AddQtToggle(QTKey.剑舞, "剑舞", true);
-        builder.AddQtToggle(QTKey.百花, "百花争艳", true);
-        builder.AddQtToggle(QTKey.探戈, "进攻之探戈", true);
-        builder.AddQtToggle(QTKey.扇舞, "扇舞技能", true);
+        builder.AddQtToggle(QTKey.小舞, true);
+        builder.AddQtToggle(QTKey.大舞, true);
+        builder.AddQtToggle(QTKey.剑舞, true);
+        builder.AddQtToggle(QTKey.百花, true);
+        builder.AddQtToggle(QTKey.探戈, true);
+        builder.AddQtToggle(QTKey.扇舞, true);
     }
 }
