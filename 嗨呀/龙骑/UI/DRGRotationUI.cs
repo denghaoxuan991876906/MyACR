@@ -2,7 +2,7 @@ namespace 嗨呀.龙骑.UI;
 
 public class DRGRotationUI : IRotationUI
 {
-    public void RegisterControls(IUiBuilder builder)
+    public void RegisterControls(IAcrUiBuilder builder)
     {
         builder.AddBuiltinQt(BuiltinQt.Burst);
         builder.AddBuiltinQt(BuiltinQt.Potion);

@@ -2,7 +2,7 @@ namespace 嗨呀.舞者.UI;
 
 public class DNCRotationUI : IRotationUI
 {
-    public void RegisterControls(IUiBuilder builder)
+    public void RegisterControls(IAcrUiBuilder builder)
     {
         builder.AddBuiltinQt(BuiltinQt.Burst);
         builder.AddBuiltinQt(BuiltinQt.Potion);

@@ -2,7 +2,7 @@ namespace 嗨呀.绝枪.UI;
 
 public class GNBRotationUI : IRotationUI
 {
-    public void RegisterControls(IUiBuilder builder)
+    public void RegisterControls(IAcrUiBuilder builder)
     {
         builder.AddBuiltinQt(BuiltinQt.Burst);
         builder.AddBuiltinQt(BuiltinQt.Potion);

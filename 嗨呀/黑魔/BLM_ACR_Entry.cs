@@ -10,6 +10,7 @@ public class BLM_ACR_Entry : IRotationEntry, ISettingsProvider<BLM_Setting>
 {
     public Rotation? Build(string settingFolder)
     {
+        BLM_Setting.Instance = Settings;
         return new Rotation
         {
             TargetJob = Jobs.BLM,
