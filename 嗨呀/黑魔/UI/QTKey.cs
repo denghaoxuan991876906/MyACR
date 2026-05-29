@@ -12,4 +12,5 @@ public class QTKey
     public const string 高级循环 = "高级循环";
     public const string 减少冰悖论 = "减少冰悖论";
     public const string 减少火悖论 = "减少火悖论";
+    public const string 起手不三连 = "起手不三连";
 }

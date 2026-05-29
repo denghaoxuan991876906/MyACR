@@ -3,30 +3,44 @@
 public class BLM_EventControl : IRotationEventHandler
 {
     private int _释放技能时状态;
+    private readonly HashSet<string> _printedCallbacks = [];
+    private readonly HashSet<Type> _printedEventTypes = [];
+
+    private void PrintOnce(string callback)
+    {
+        if (_printedCallbacks.Add(callback))
+            Hi.Print($"[{DateTime.Now:HH:mm:ss.fff}] {callback}");
+    }
 
     public void OnPreCombat()
     {
+        PrintOnce("OnPreCombat");
     }
 
     public void OnResetBattle()
     {
+        PrintOnce("OnResetBattle");
         BLM_BattleData.Instance.Reset();
     }
 
     public void OnNoTarget()
     {
+        PrintOnce("OnNoTarget");
     }
 
     public void OnSpellCastSuccess(Slot slot, Spell spell)
     {
+        PrintOnce($"OnSpellCastSuccess: {spell.Name} (Id={spell.Id})");
     }
 
     public void BeforeSpell(Slot slot, Spell spell)
     {
+        PrintOnce($"BeforeSpell: {spell.Name} (Id={spell.Id})");
     }
 
     public void AfterSpell(Slot slot, Spell spell)
     {
+        PrintOnce($"AfterSpell: {spell.Name} (Id={spell.Id})");
         var bd = BLM_BattleData.Instance;
 
         if (bd.AfterSpell.Count > 40)
@@ -83,6 +97,7 @@ public class BLM_EventControl : IRotationEventHandler
 
     public void OnBattleUpdate(int battleTimeMs)
     {
+        PrintOnce("OnBattleUpdate");
         var bd = BLM_BattleData.Instance;
 
         var status = BLMHelper.冰火状态();
@@ -125,22 +140,29 @@ public class BLM_EventControl : IRotationEventHandler
 
     public void OnEnterRotation()
     {
+        PrintOnce("OnEnterRotation");
         Hi.Print("欢迎使用嗨呀的黑魔ACR");
     }
 
     public void OnExitRotation()
     {
+        PrintOnce("OnExitRotation");
     }
 
     public void OnTerritoryChanged()
     {
+        PrintOnce("OnTerritoryChanged");
     }
 
     public void OnGameEvent(ITriggerCondParams eventParams)
     {
+        var type = eventParams.GetType();
+        if (_printedEventTypes.Add(type))
+            Hi.Print($"[{DateTime.Now:HH:mm:ss.fff}] OnGameEvent: {type.Name}");
     }
 
     public void OnPhaseChanged(string phaseId, string phaseName)
     {
+        PrintOnce($"OnPhaseChanged: {phaseId} ({phaseName})");
     }
 }

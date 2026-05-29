@@ -3,6 +3,7 @@ using 嗨呀.黑魔.SlotResolver.GCD;
 using 嗨呀.黑魔.SlotResolver.GCD.AOE;
 using 嗨呀.黑魔.UI;
 using 嗨呀.黑魔.设置;
+using 嗨呀.黑魔.起手;
 
 namespace 嗨呀.黑魔;
 
@@ -52,6 +53,7 @@ public class BLM_ACR_Entry : IRotationEntry, ISettingsProvider<BLM_Setting>
                 new SlotResolverData { Resolver = new 爆发药(), Mode = SlotMode.OffGcd },
             ],
             EventHandler = new BLM_EventControl(),
+            Opener = new BLM_Open100(),
         };
     }
 
@@ -80,5 +82,6 @@ public class BLM_ACR_Entry : IRotationEntry, ISettingsProvider<BLM_Setting>
     public string AuthorName { get; } = "嗨呀";
     public bool UseCustomUi { get; } = false;
     public IEnumerable<Jobs> TargetJobs => [Jobs.BLM];
+    public AcrType AcrType => AcrType.PvE;
     public BLM_Setting Settings { get; set; } = new BLM_Setting();
 }
