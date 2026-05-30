@@ -21,8 +21,9 @@ public class DRK_EventControl : IRotationEventHandler
     {
     }
 
-    public void BeforeSpell(Slot slot, Spell spell)
+    public Slot? BeforeSpell(Slot slot)
     {
+        return null;
     }
 
     public void AfterSpell(Slot slot, Spell spell)

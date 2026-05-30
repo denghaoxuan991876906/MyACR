@@ -33,14 +33,15 @@ public class BLM_EventControl : IRotationEventHandler
         PrintOnce($"OnSpellCastSuccess: {spell.Name} (Id={spell.Id})");
     }
 
-    public void BeforeSpell(Slot slot, Spell spell)
+    public Slot? BeforeSpell(Slot slot)
     {
-        PrintOnce($"BeforeSpell: {spell.Name} (Id={spell.Id})");
+        PrintOnce($"BeforeSpell: {slot.Actions[0]?.Spell.Name} (Id={slot.Actions[0]?.Spell.Id})");
+        return null;
     }
 
     public void AfterSpell(Slot slot, Spell spell)
     {
-        PrintOnce($"AfterSpell: {spell.Name} (Id={spell.Id})");
+        Hi.Print($"[{DateTime.Now:HH:mm:ss.fff}] AfterSpell: {spell.Name} (Id={spell.Id})");
         var bd = BLM_BattleData.Instance;
 
         if (bd.AfterSpell.Count > 40)
