@@ -14,18 +14,15 @@ public class BLM_EventControl : IRotationEventHandler
 
     public void OnPreCombat()
     {
-        PrintOnce("OnPreCombat");
     }
 
     public void OnResetBattle()
     {
-        PrintOnce("OnResetBattle");
         BLM_BattleData.Instance.Reset();
     }
 
     public void OnNoTarget()
     {
-        PrintOnce("OnNoTarget");
     }
 
     public void OnSpellCastSuccess(Slot slot, Spell spell)
@@ -41,7 +38,6 @@ public class BLM_EventControl : IRotationEventHandler
 
     public void AfterSpell(Slot slot, Spell spell)
     {
-        Hi.Print($"[{DateTime.Now:HH:mm:ss.fff}] AfterSpell: {spell.Name} (Id={spell.Id})");
         var bd = BLM_BattleData.Instance;
 
         if (bd.AfterSpell.Count > 40)
@@ -98,7 +94,6 @@ public class BLM_EventControl : IRotationEventHandler
 
     public void OnBattleUpdate(int battleTimeMs)
     {
-        PrintOnce("OnBattleUpdate");
         var bd = BLM_BattleData.Instance;
 
         var status = BLMHelper.冰火状态();
@@ -141,29 +136,24 @@ public class BLM_EventControl : IRotationEventHandler
 
     public void OnEnterRotation()
     {
-        PrintOnce("OnEnterRotation");
         Hi.Print("欢迎使用嗨呀的黑魔ACR");
     }
 
     public void OnExitRotation()
     {
-        PrintOnce("OnExitRotation");
     }
 
     public void OnTerritoryChanged()
     {
-        PrintOnce("OnTerritoryChanged");
     }
 
     public void OnGameEvent(ITriggerCondParams eventParams)
     {
-        var type = eventParams.GetType();
-        if (_printedEventTypes.Add(type))
-            Hi.Print($"[{DateTime.Now:HH:mm:ss.fff}] OnGameEvent: {type.Name}");
+        
     }
 
     public void OnPhaseChanged(string phaseId, string phaseName)
     {
-        PrintOnce($"OnPhaseChanged: {phaseId} ({phaseName})");
+        
     }
 }

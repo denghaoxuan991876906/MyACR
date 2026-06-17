@@ -21,7 +21,7 @@
         </ProjectReference>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="HiAuRo.Sdk" Version="0.1.*">
+      <PackageReference Include="HiAuRo.Sdk" Version="0.*">
             <ExcludeAssets>runtime</ExcludeAssets>
         </PackageReference>
     </ItemGroup>
