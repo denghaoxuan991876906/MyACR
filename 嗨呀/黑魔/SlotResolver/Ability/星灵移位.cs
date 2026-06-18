@@ -7,49 +7,37 @@ public class 星灵移位 : ISlotResolver
 {
     public int Check()
     {
-        if (GameHelper.GetCurrentLevel() < 4) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 40) return (int)CheckResult.等级不足;
+        if (!SpellHelper.CanUseSpell(BLMHelper.星灵移位)) return (int)CheckResult.冷却中;
+        if (GameHelper.GetGCDCooldown() < 400) return (int)CheckResult.技能未就绪;
 
-        if (CooldownHelper.GetCooldownRemaining(BLMHelper.星灵移位) > 0) return (int)CheckResult.冷却中;
-
-        if (!BLMHelper.火状态 && !BLMHelper.冰状态) return (int)CheckResult.状态不符;
-
-        if (GameHelper.GetCurrentLevel() < 80) return (int)CheckResult.状态不符;
+        var bd = BLM_BattleData.Instance;
 
         if (BLMHelper.火状态)
         {
-            if (GameHelper.GetCurrentLevel() >= 100 && !BLM_BattleData.Instance.火阶段已放耀星)
+            var mp = Data.Me.Object?.CurrentMp ?? 0;
+            if (mp >= 800) return (int)CheckResult.状态不符;
+            if (BLMHelper.耀星层数 == 6 && GameHelper.GetCurrentLevel() == 100) return (int)CheckResult.状态不符;
+            if (BLM_BattleData.应先用魔泉())
                 return (int)CheckResult.状态不符;
 
-            if (CooldownHelper.GetCooldownRemaining(BLMHelper.魔泉) <= 0 && QTHelper.IsEnabled("墨泉"))
+            if (BLMHelper.可瞬发) return 0;
+            if (GameHelper.GetCurrentLevel() < 100) return (int)CheckResult.状态不符;
+
+            var 即刻下个Gcd内可用 = SpellHelper.CanUseSpell(BLMHelper.即可咏唱)
+                || SpellHelper.GetCooldownRemaining(BLMHelper.即可咏唱) < GCDHelper.GetGCDDuration();
+            var 三连可用 = QTHelper.IsEnabled(QTKey.三连) && SpellHelper.GetCharges(BLMHelper.三连咏唱) >= 1;
+            if (!即刻下个Gcd内可用 && !三连可用)
                 return (int)CheckResult.状态不符;
-
-            if (Data.Me.Object?.CurrentMp >= 800) return (int)CheckResult.资源不足;
-
-            if (GameHelper.GetCurrentLevel() >= 100)
-            {
-                var hasInstantAbility = CooldownHelper.GetCooldownRemaining(BLMHelper.即可咏唱) <= 0
-                    || CooldownHelper.GetCharges(BLMHelper.三连咏唱) >= 1;
-                if (!hasInstantAbility && !Data.Me.IsMoving)
-                    return (int)CheckResult.状态不符;
-            }
-
-            return 1;
+            return 0;
         }
 
         if (BLMHelper.冰状态)
         {
-            if (BLMHelper.冰层数 != 3) return (int)CheckResult.状态不符;
-
-            if (!QTHelper.IsEnabled(QTKey.高级循环))
-            {
-                if (BLMHelper.冰针数 < 3) return (int)CheckResult.资源不足;
-
-                if (BLM_BattleData.Instance.已回复蓝量 < 10000) return (int)CheckResult.资源不足;
-            }
-
-            if (BLMHelper.悖论指示) return (int)CheckResult.状态不符;
-
-            return 1;
+            if (QTHelper.IsEnabled(QTKey.冰悖论) && BLMHelper.悖论指示) return (int)CheckResult.状态不符;
+            if (BLMHelper.冰层数 != 3 && !bd.冰阶段已放冰澈) return (int)CheckResult.状态不符;
+            if (BLMHelper.冰针数 != 3 || bd.三冰针进冰) return (int)CheckResult.状态不符;
+            return 0;
         }
 
         return (int)CheckResult.状态不符;

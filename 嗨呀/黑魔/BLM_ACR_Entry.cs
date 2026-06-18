@@ -1,6 +1,5 @@
 ﻿using 嗨呀.黑魔.SlotResolver.Ability;
 using 嗨呀.黑魔.SlotResolver.GCD;
-using 嗨呀.黑魔.SlotResolver.GCD.AOE;
 using 嗨呀.黑魔.UI;
 using 嗨呀.黑魔.设置;
 using 嗨呀.黑魔.起手;
@@ -21,36 +20,32 @@ public class BLM_ACR_Entry : IRotationEntry, ISettingsProvider<BLM_Setting>
             Description = "嗨呀黑魔ACR",
             SlotResolvers =
             [
-                // GCD
-                new SlotResolverData { Resolver = new 瞬发触发器(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 异言(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 雷群(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 雷(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 悖论_起手(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 悖论_收尾(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 耀星(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 核爆(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 火三(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 火四(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 绝望(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 冰冻(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 玄冰(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 冰三(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 悖论_冰(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 冰澈(), Mode = SlotMode.Gcd },
-                new SlotResolverData { Resolver = new 灵极魂(), Mode = SlotMode.Gcd },
-
-                // Ability
+                // Always（立即响应：发呆激发）
                 new SlotResolverData { Resolver = new 即刻三连(), Mode = SlotMode.Always },
-                new SlotResolverData { Resolver = new 星灵移位(), Mode = SlotMode.Always },
-                new SlotResolverData { Resolver = new 即刻(), Mode = SlotMode.OffGcd },
-                new SlotResolverData { Resolver = new 三连咏唱(), Mode = SlotMode.OffGcd },
-                new SlotResolverData { Resolver = new 醒梦(), Mode = SlotMode.OffGcd },
-                new SlotResolverData { Resolver = new 墨泉(), Mode = SlotMode.OffGcd },
-                new SlotResolverData { Resolver = new 详述(), Mode = SlotMode.OffGcd },
+
+                // GCD
+                new SlotResolverData { Resolver = new 高级循环_绝望(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 瞬发触发器(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 高闪雷(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 异言(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 秽浊(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 火单100(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 冰单100(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 火单90(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 冰单90(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 火单80(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 冰单80(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 火单70(), Mode = SlotMode.Gcd },
+                new SlotResolverData { Resolver = new 冰单70(), Mode = SlotMode.Gcd },
+
+                // OffGcd
+                new SlotResolverData { Resolver = new 高级循环_星灵移位(), Mode = SlotMode.OffGcd },
+                new SlotResolverData { Resolver = new 星灵移位(), Mode = SlotMode.OffGcd },
                 new SlotResolverData { Resolver = new 黑魔纹(), Mode = SlotMode.OffGcd },
-                new SlotResolverData { Resolver = new 昏乱(), Mode = SlotMode.OffGcd },
-                new SlotResolverData { Resolver = new 爆发药(), Mode = SlotMode.OffGcd },
+                new SlotResolverData { Resolver = new 详述(), Mode = SlotMode.OffGcd },
+                new SlotResolverData { Resolver = new 魔泉(), Mode = SlotMode.OffGcd },
+                new SlotResolverData { Resolver = new 三连(), Mode = SlotMode.OffGcd },
+                new SlotResolverData { Resolver = new 即刻(), Mode = SlotMode.OffGcd },
             ],
             EventHandler = new BLM_EventControl(),
             Opener = new BLM_Open100(),

@@ -62,7 +62,7 @@ public class 瞬发触发器 : ISlotResolver
         if (BLMHelper.火状态 && BLMHelper.Has火苗 && BLMHelper.火层数 < 3)
             return (int)BLMHelper.爆炎;
 
-        if (BLMHelper.悖论指示)
+        if (BLMHelper.冰状态 && BLMHelper.悖论指示)
             return (int)BLMHelper.悖论;
 
         if (BLMHelper.火状态)

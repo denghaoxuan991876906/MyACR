@@ -1,5 +1,5 @@
 // Check() 返回值约定：
-//   >= 0   = 可用，框架在所有命中中取最高值
+//   >= 0   = 可用，优先级由 BLM_ACR_Entry.cs 中 SlotResolvers 的排列顺序决定
 //    < 0   = 拒绝，该值仅作为调试标签
 
 namespace 嗨呀.黑魔.SlotResolver.BLMData;
