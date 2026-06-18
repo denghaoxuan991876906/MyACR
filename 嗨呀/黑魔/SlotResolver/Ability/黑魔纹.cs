@@ -6,7 +6,7 @@ public class 黑魔纹 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 52) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 52) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled("黑魔纹")) return (int)CheckResult.QT关闭;
 
@@ -14,7 +14,7 @@ public class 黑魔纹 : ISlotResolver
 
         if (AuraHelper.HasSelfAura(BLMHelper.魔纹存在buff)) return (int)CheckResult.状态不符;
 
-        if (HelperRuntime.GetGCDCooldown() < 400) return (int)CheckResult.冷却中;
+        if (GameHelper.GetGCDCooldown() < 400) return (int)CheckResult.冷却中;
 
         if (QTHelper.IsEnabled("TTK")) return (int)CheckResult.特殊循环中;
 

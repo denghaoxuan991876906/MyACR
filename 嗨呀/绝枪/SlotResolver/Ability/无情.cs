@@ -7,7 +7,7 @@ public class 无情 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 38) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 38) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.无情)) return (int)CheckResult.QT关闭;
 
@@ -15,7 +15,7 @@ public class 无情 : ISlotResolver
 
         if (CooldownHelper.GetCooldownRemaining(GNBHelper.无情技能) > 0) return (int)CheckResult.冷却中;
 
-        if (HelperRuntime.GetGCDCooldown() > 600) return (int)CheckResult.冷却中;
+        if (GameHelper.GetGCDCooldown() > 600) return (int)CheckResult.冷却中;
 
         return 1;
     }

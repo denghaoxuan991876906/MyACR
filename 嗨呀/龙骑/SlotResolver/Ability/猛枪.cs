@@ -7,7 +7,7 @@ public class 猛枪 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 30) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 30) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.爆发)) return (int)CheckResult.QT关闭;
 
@@ -15,7 +15,7 @@ public class 猛枪 : ISlotResolver
 
         if (CooldownHelper.GetCooldownRemaining(DRGHelper.猛枪) > 0) return (int)CheckResult.冷却中;
 
-        if (HelperRuntime.GetGCDCooldown() < 400) return (int)CheckResult.冷却中;
+        if (GameHelper.GetGCDCooldown() < 400) return (int)CheckResult.冷却中;
 
         if (DRGHelper.猛枪激活) return (int)CheckResult.状态不符;
 

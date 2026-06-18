@@ -7,7 +7,7 @@ public class 冰澈 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 58) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 58) return (int)CheckResult.等级不足;
 
         if (!BLMHelper.冰状态) return (int)CheckResult.状态不符;
 

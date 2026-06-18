@@ -7,7 +7,7 @@ public class 冰冻 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 12) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 12) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.AOE)) return (int)CheckResult.QT关闭;
 
@@ -15,7 +15,7 @@ public class 冰冻 : ISlotResolver
 
         if (Data.Me.IsMoving && !BLMHelper.可瞬发) return (int)CheckResult.移动中;
 
-        var level = HelperRuntime.GetCurrentLevel();
+        var level = GameHelper.GetCurrentLevel();
         var iceId = level >= 94 ? BLMHelper.高冰冻 : BLMHelper.冰冻;
 
         if (BLMHelper.火状态 && Data.Me.Object?.CurrentMp < 800)
@@ -32,7 +32,7 @@ public class 冰冻 : ISlotResolver
 
     public void Build(Slot slot)
     {
-        var level = HelperRuntime.GetCurrentLevel();
+        var level = GameHelper.GetCurrentLevel();
         var id = level >= 94 ? BLMHelper.高冰冻 : BLMHelper.冰冻;
         slot.Add(new Spell { Id = id, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
     }

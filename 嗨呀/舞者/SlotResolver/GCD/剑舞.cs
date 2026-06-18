@@ -7,7 +7,7 @@ public class 剑舞 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 76) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 76) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.剑舞)) return (int)CheckResult.QT关闭;
 

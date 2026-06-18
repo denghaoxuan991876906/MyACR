@@ -7,7 +7,7 @@ public class 幻象冲 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 54) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 54) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.爆发)) return (int)CheckResult.QT关闭;
 
@@ -17,7 +17,7 @@ public class 幻象冲 : ISlotResolver
 
         if (CooldownHelper.GetCooldownRemaining(DRGHelper.幻象冲) > 0) return (int)CheckResult.冷却中;
 
-        if (HelperRuntime.GetGCDCooldown() < 400) return (int)CheckResult.冷却中;
+        if (GameHelper.GetGCDCooldown() < 400) return (int)CheckResult.冷却中;
 
         return 1;
     }

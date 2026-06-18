@@ -7,7 +7,7 @@ public class 闪雷弹 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 15) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 15) return (int)CheckResult.等级不足;
 
         if (Data.Target.Current == null) return (int)CheckResult.目标无效;
 

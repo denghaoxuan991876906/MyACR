@@ -6,7 +6,7 @@ public class 灵极魂 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 35) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 35) return (int)CheckResult.等级不足;
 
         if (!BLMHelper.冰状态) return (int)CheckResult.状态不符;
 

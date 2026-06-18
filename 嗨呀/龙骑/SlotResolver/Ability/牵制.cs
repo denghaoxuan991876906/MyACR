@@ -7,7 +7,7 @@ public class 牵制 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 22) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 22) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.自动减伤)) return (int)CheckResult.QT关闭;
 

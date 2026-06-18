@@ -7,7 +7,7 @@ public class 扇舞急 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 66) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 66) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.扇舞)) return (int)CheckResult.QT关闭;
 

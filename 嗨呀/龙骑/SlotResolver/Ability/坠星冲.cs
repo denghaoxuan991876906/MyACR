@@ -7,7 +7,7 @@ public class 坠星冲 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 80) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 80) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.爆发)) return (int)CheckResult.QT关闭;
 
@@ -17,7 +17,7 @@ public class 坠星冲 : ISlotResolver
 
         if (!DRGHelper.猛枪激活) return (int)CheckResult.状态不符;
 
-        if (HelperRuntime.GetGCDCooldown() < 600) return (int)CheckResult.冷却中;
+        if (GameHelper.GetGCDCooldown() < 600) return (int)CheckResult.冷却中;
 
         return 1;
     }

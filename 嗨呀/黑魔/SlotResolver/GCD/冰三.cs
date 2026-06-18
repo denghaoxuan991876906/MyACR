@@ -7,13 +7,13 @@ public class 冰三 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 35) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 35) return (int)CheckResult.等级不足;
 
         if (Data.Me.IsMoving && !BLMHelper.可瞬发) return (int)CheckResult.移动中;
 
         if (BLMHelper.火状态 && !BLMHelper.群怪模式 && BLMHelper.耀星层数 < 6)
         {
-            if (HelperRuntime.GetCurrentLevel() < 80)
+            if (GameHelper.GetCurrentLevel() < 80)
             {
                 var fire4Cost = BLMHelper.冰针数 > 0 ? 800 : 1600;
                 if (Data.Me.Object?.CurrentMp < fire4Cost)

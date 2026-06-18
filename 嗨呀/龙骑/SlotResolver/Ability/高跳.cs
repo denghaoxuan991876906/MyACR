@@ -7,7 +7,7 @@ public class 高跳 : ISlotResolver
 {
     public int Check()
     {
-        var level = HelperRuntime.GetCurrentLevel();
+        var level = GameHelper.GetCurrentLevel();
 
         if (level < 30) return (int)CheckResult.等级不足;
 
@@ -24,14 +24,14 @@ public class 高跳 : ISlotResolver
             if (CooldownHelper.GetCooldownRemaining(DRGHelper.跳跃) > 0) return (int)CheckResult.冷却中;
         }
 
-        if (HelperRuntime.GetGCDCooldown() < 400) return (int)CheckResult.冷却中;
+        if (GameHelper.GetGCDCooldown() < 400) return (int)CheckResult.冷却中;
 
         return 1;
     }
 
     public void Build(Slot slot)
     {
-        var level = HelperRuntime.GetCurrentLevel();
+        var level = GameHelper.GetCurrentLevel();
         var id = level >= 74 ? DRGHelper.高跳 : DRGHelper.跳跃;
 
         slot.Add(new Spell { Id = id, TargetType = SpellTargetType.Target, Type = SpellType.Ability });

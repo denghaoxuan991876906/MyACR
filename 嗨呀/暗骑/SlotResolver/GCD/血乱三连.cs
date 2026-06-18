@@ -10,7 +10,7 @@ public class 血乱三连 : ISlotResolver
     {
         if (!DRKHelper.血乱激活) return (int)CheckResult.状态不符;
 
-        if (HelperRuntime.GetCurrentLevel() >= 96)
+        if (GameHelper.GetCurrentLevel() >= 96)
         {
             var lastGcd = DRK_BattleData.Instance.前一gcd;
             if (lastGcd == DRKHelper.血乱裂)
@@ -27,7 +27,7 @@ public class 血乱三连 : ISlotResolver
     {
         uint id;
 
-        if (HelperRuntime.GetCurrentLevel() >= 96)
+        if (GameHelper.GetCurrentLevel() >= 96)
         {
             var lastGcd = DRK_BattleData.Instance.前一gcd;
             if (lastGcd == DRKHelper.血乱裂)

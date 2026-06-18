@@ -7,7 +7,7 @@ public class 对称投掷 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 20) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 20) return (int)CheckResult.等级不足;
 
         if (DNCHelper.IsDancing) return (int)CheckResult.状态不符;
 

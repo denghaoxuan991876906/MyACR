@@ -8,7 +8,7 @@ public class 暗血技能 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 35) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 35) return (int)CheckResult.等级不足;
 
         if (DRKHelper.血乱激活) return (int)CheckResult.状态不符;
 

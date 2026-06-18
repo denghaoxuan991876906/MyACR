@@ -7,7 +7,7 @@ public class 悖论_冰 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 90) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 90) return (int)CheckResult.等级不足;
 
         if (!BLMHelper.冰状态) return (int)CheckResult.状态不符;
 

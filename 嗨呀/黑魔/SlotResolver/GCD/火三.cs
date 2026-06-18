@@ -7,7 +7,7 @@ public class 火三 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 60) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 60) return (int)CheckResult.等级不足;
 
         if (Data.Me.IsMoving && !BLMHelper.可瞬发 && !BLMHelper.Has火苗) return (int)CheckResult.移动中;
 

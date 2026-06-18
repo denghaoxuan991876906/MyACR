@@ -7,7 +7,7 @@ public class 雷群 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 64) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 64) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.AOE)) return (int)CheckResult.QT关闭;
 
@@ -21,7 +21,7 @@ public class 雷群 : ISlotResolver
 
         if (!BLMHelper.Has雷云) return (int)CheckResult.资源不足;
 
-        var level = HelperRuntime.GetCurrentLevel();
+        var level = GameHelper.GetCurrentLevel();
         uint skillId;
         if (level >= 92)
             skillId = BLMHelper.高震雷;
@@ -35,7 +35,7 @@ public class 雷群 : ISlotResolver
 
     public void Build(Slot slot)
     {
-        var level = HelperRuntime.GetCurrentLevel();
+        var level = GameHelper.GetCurrentLevel();
         uint skillId;
         if (level >= 92)
             skillId = BLMHelper.高震雷;

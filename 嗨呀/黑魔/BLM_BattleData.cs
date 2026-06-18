@@ -34,7 +34,7 @@ public class BLM_BattleData
     public static bool 在发呆()
     {
         if (!Data.Combat.InCombat) return false;
-        if (HelperRuntime.GetGCDCooldown() > 0) return false;
+        if (GameHelper.GetGCDCooldown() > 0) return false;
         return true;
     }
 }

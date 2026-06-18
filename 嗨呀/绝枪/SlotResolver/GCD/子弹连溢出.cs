@@ -7,7 +7,7 @@ public class 子弹连溢出 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 60) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 60) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.子弹连)) return (int)CheckResult.QT关闭;
 
@@ -18,7 +18,7 @@ public class 子弹连溢出 : ISlotResolver
 
         if (!GNBHelper.HasCartridge) return (int)CheckResult.资源不足;
 
-        if (HelperRuntime.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
+        if (GameHelper.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
 
         return (int)GNBHelper.烈牙;
     }

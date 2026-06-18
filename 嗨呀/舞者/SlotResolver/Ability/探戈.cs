@@ -7,7 +7,7 @@ public class 探戈 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 62) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 62) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.探戈)) return (int)CheckResult.QT关闭;
 

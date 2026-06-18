@@ -8,7 +8,7 @@ public class 贯穿尖 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 15) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 15) return (int)CheckResult.等级不足;
 
         if (QTHelper.IsEnabled(QTKey.AOE) && DRGHelper.群怪模式) return (int)CheckResult.群怪模式;
 

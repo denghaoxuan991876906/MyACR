@@ -6,7 +6,7 @@ public class 昏乱 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 8) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 8) return (int)CheckResult.等级不足;
 
         if (CooldownHelper.GetCooldownRemaining(BLMHelper.昏乱) > 0) return (int)CheckResult.冷却中;
 

@@ -41,7 +41,7 @@ public class BLM_Open100 :IOpener
 
     private static void Step1(Slot slot)
     {
-        slot.Add(new Spell { Id = HelperRuntime.GetActionChange(BLMHelper.闪雷), TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
+        slot.Add(new Spell { Id = GameHelper.GetActionChange(BLMHelper.闪雷), TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
 
         slot.Add(new Spell { Id = BLMHelper.即可咏唱, TargetType = SpellTargetType.Self, Type = SpellType.Ability });
         slot.Add(new Spell { Id = BLMHelper.详述, TargetType = SpellTargetType.Self, Type = SpellType.Ability });
@@ -76,7 +76,7 @@ public class BLM_Open100 :IOpener
         slot.Add(new Spell { Id = BLMHelper.炽焰, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
         slot.Add(new Spell { Id = BLMHelper.耀星, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
         slot.Add(new Spell { Id = BLMHelper.炽焰, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
-        slot.Add(new Spell { Id = HelperRuntime.GetActionChange(BLMHelper.闪雷), TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
+        slot.Add(new Spell { Id = GameHelper.GetActionChange(BLMHelper.闪雷), TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
         slot.Add(new Spell { Id = BLMHelper.炽焰, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
         slot.Add(new Spell { Id = BLMHelper.炽焰, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
         slot.Add(new Spell { Id = BLMHelper.炽焰, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });

@@ -7,15 +7,15 @@ public class 音速破 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 58) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 58) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.音速破)) return (int)CheckResult.QT关闭;
 
         if (!GNBHelper.Has无情) return (int)CheckResult.状态不符;
 
-        if (HelperRuntime.GetStatusTimeLeftOnTarget(3161) >= 3f) return (int)CheckResult.状态不符;
+        if (GameHelper.GetStatusTimeLeftOnTarget(3161) >= 3f) return (int)CheckResult.状态不符;
 
-        if (HelperRuntime.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
+        if (GameHelper.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
 
         return (int)GNBHelper.音速破;
     }

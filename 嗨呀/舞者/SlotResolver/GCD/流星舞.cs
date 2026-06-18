@@ -6,7 +6,7 @@ public class 流星舞 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 92) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 92) return (int)CheckResult.等级不足;
 
         if (DNCHelper.IsDancing) return (int)CheckResult.状态不符;
 

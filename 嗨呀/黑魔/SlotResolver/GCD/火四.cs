@@ -7,7 +7,7 @@ public class 火四 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 60) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 60) return (int)CheckResult.等级不足;
 
         if (!BLMHelper.火状态 || BLMHelper.火层数 < 3) return (int)CheckResult.状态不符;
 
@@ -21,7 +21,7 @@ public class 火四 : ISlotResolver
 
         if (BLM_BattleData.Instance.火阶段已放耀星) return (int)CheckResult.状态不符;
 
-        if (HelperRuntime.GetCurrentLevel() >= 100 && !BLM_BattleData.Instance.能六火四 && BLMHelper.耀星层数 >= 3)
+        if (GameHelper.GetCurrentLevel() >= 100 && !BLM_BattleData.Instance.能六火四 && BLMHelper.耀星层数 >= 3)
         {
             var fire4Cost = BLMHelper.冰针数 > 0 ? 800 : 1600;
             if (Data.Me.Object?.CurrentMp - fire4Cost < 800)

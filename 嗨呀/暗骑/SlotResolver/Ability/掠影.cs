@@ -8,7 +8,7 @@ public class 掠影 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 80) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 80) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.掠影)) return (int)CheckResult.QT关闭;
 
@@ -16,7 +16,7 @@ public class 掠影 : ISlotResolver
 
         if (CooldownHelper.GetCharges(DRKHelper.掠影示现) < 1) return (int)CheckResult.冷却中;
 
-        if (HelperRuntime.GetGCDCooldown() < 400) return (int)CheckResult.技能未就绪;
+        if (GameHelper.GetGCDCooldown() < 400) return (int)CheckResult.技能未就绪;
 
         return 1;
     }

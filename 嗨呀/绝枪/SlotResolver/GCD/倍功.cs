@@ -7,7 +7,7 @@ public class 倍功 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 80) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 80) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.倍功)) return (int)CheckResult.QT关闭;
 
@@ -15,7 +15,7 @@ public class 倍功 : ISlotResolver
 
         if (GNBHelper.CartridgeCount < 2) return (int)CheckResult.资源不足;
 
-        if (HelperRuntime.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
+        if (GameHelper.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
 
         return (int)GNBHelper.倍功;
     }

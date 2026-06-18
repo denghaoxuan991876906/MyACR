@@ -29,7 +29,7 @@ public class 瞬发触发器 : ISlotResolver
 
     private static int 可用瞬发()
     {
-        var level = HelperRuntime.GetCurrentLevel();
+        var level = GameHelper.GetCurrentLevel();
         if (BLMHelper.群怪模式)
         {
             if (BLMHelper.Has雷云 && BLMHelper.补dot())

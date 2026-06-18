@@ -6,11 +6,11 @@ public class 详述 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 86) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 86) return (int)CheckResult.等级不足;
 
         if (CooldownHelper.GetCooldownRemaining(BLMHelper.详述) > 0) return (int)CheckResult.冷却中;
 
-        var level = HelperRuntime.GetCurrentLevel();
+        var level = GameHelper.GetCurrentLevel();
         if (level >= 98)
         {
             if (BLMHelper.通晓数 >= 2) return (int)CheckResult.资源不足;
@@ -20,7 +20,7 @@ public class 详述 : ISlotResolver
             if (BLMHelper.通晓数 >= 1) return (int)CheckResult.资源不足;
         }
 
-        if (HelperRuntime.GetGCDCooldown() < 400) return (int)CheckResult.冷却中;
+        if (GameHelper.GetGCDCooldown() < 400) return (int)CheckResult.冷却中;
 
         return 1;
     }

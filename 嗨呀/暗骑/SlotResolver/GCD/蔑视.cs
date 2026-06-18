@@ -7,7 +7,7 @@ public class 蔑视 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 100) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 100) return (int)CheckResult.等级不足;
 
         if (!DRKHelper.蔑视激活) return (int)CheckResult.状态不符;
 

@@ -9,13 +9,13 @@ public class AOE连击 : ISlotResolver
 
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 15) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 15) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.AOE)) return (int)CheckResult.QT关闭;
 
         if (!DRGHelper.群怪模式) return (int)CheckResult.群怪模式;
 
-        var level = HelperRuntime.GetCurrentLevel();
+        var level = GameHelper.GetCurrentLevel();
         var lastCombo = ComboHelper.LastComboSpellId;
 
         if (lastCombo == DRGHelper.山境酷刑 && level >= 72)

@@ -7,7 +7,7 @@ public class 百花 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 20) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 20) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.百花)) return (int)CheckResult.QT关闭;
 

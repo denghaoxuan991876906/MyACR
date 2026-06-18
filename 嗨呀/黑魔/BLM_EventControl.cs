@@ -79,7 +79,7 @@ public class BLM_EventControl : IRotationEventHandler
             or BLMHelper.高冰冻 or BLMHelper.冰冻 or BLMHelper.灵极魂)
         {
             bd.前一gcd = spell.Id;
-            bd.已使用瞬发 = HelperRuntime.GetGCDCooldown() >= 1500;
+            bd.已使用瞬发 = GameHelper.GetGCDCooldown() >= 1500;
             if (BLMHelper.冰状态) _释放技能时状态 = 1;
             else if (BLMHelper.火状态) _释放技能时状态 = 2;
             else _释放技能时状态 = 0;

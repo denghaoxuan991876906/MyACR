@@ -6,7 +6,7 @@ public class 桑巴 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 56) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 56) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(BuiltinQt.Mitigation)) return (int)CheckResult.QT关闭;
 

@@ -7,27 +7,27 @@ public class 血壤连 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 86) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 86) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.血壤连)) return (int)CheckResult.QT关闭;
 
         var bd = 绝枪_BattleData.Instance;
 
-        if (bd.血壤连步骤 == 2 && HelperRuntime.HasStatus(3840))
+        if (bd.血壤连步骤 == 2 && GameHelper.HasStatus(3840))
         {
-            if (HelperRuntime.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
+            if (GameHelper.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
             return (int)GNBHelper.终结之心;
         }
 
-        if (bd.血壤连步骤 == 1 && HelperRuntime.HasStatus(3840))
+        if (bd.血壤连步骤 == 1 && GameHelper.HasStatus(3840))
         {
-            if (HelperRuntime.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
+            if (GameHelper.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
             return (int)GNBHelper.支配之心;
         }
 
         if (bd.血壤连步骤 == 0 && GNBHelper.血壤激活)
         {
-            if (HelperRuntime.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
+            if (GameHelper.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
             return (int)GNBHelper.崛起之心;
         }
 

@@ -7,7 +7,7 @@ public class 三连咏唱 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 66) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 66) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled("三连")) return (int)CheckResult.QT关闭;
 

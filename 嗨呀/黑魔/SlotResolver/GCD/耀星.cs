@@ -6,7 +6,7 @@ public class 耀星 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 100) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 100) return (int)CheckResult.等级不足;
 
         if (!BLMHelper.火状态) return (int)CheckResult.状态不符;
 

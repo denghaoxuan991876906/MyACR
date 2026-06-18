@@ -14,7 +14,7 @@ public class 低血量恢复 : ISlotResolver
 
         if (hpPct > 0.3f) return (int)CheckResult.状态不符;
 
-        var level = HelperRuntime.GetCurrentLevel();
+        var level = GameHelper.GetCurrentLevel();
 
         if (level >= 12 && CooldownHelper.GetCooldownRemaining(DRGHelper.内丹) <= 0)
         {

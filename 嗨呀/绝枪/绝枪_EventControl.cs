@@ -96,7 +96,7 @@ public class 绝枪_EventControl : IRotationEventHandler
             bd.子弹连步骤 = 0;
         }
 
-        if (!GNBHelper.血壤激活 && !HelperRuntime.HasStatus(3840))
+        if (!GNBHelper.血壤激活 && !GameHelper.HasStatus(3840))
         {
             bd.血壤连步骤 = 0;
         }

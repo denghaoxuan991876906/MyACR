@@ -6,7 +6,7 @@ public class 即刻 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 18) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 18) return (int)CheckResult.等级不足;
 
         if (CooldownHelper.GetCooldownRemaining(BLMHelper.即可咏唱) > 0) return (int)CheckResult.冷却中;
 

@@ -6,7 +6,7 @@ public class 醒梦 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 14) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 14) return (int)CheckResult.等级不足;
 
         if (CooldownHelper.GetCooldownRemaining(BLMHelper.醒梦) > 0) return (int)CheckResult.冷却中;
 

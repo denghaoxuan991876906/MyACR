@@ -7,7 +7,7 @@ public class 爆发击 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 30) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 30) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.爆发击)) return (int)CheckResult.QT关闭;
 
@@ -16,12 +16,12 @@ public class 爆发击 : ISlotResolver
 
         if (!GNBHelper.HasCartridge) return (int)CheckResult.资源不足;
 
-        if (HelperRuntime.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
+        if (GameHelper.GetGCDCooldown() > 500) return (int)CheckResult.冷却中;
 
         if (QTHelper.IsEnabled(QTKey.AOE))
         {
-            var count = HelperRuntime.GetNearbyEnemyCount(5);
-            if (count >= 3 && HelperRuntime.GetCurrentLevel() >= 72)
+            var count = GameHelper.GetNearbyEnemyCount(5);
+            if (count >= 3 && GameHelper.GetCurrentLevel() >= 72)
                 return (int)GNBHelper.命运之环;
         }
 

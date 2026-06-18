@@ -7,7 +7,7 @@ public class 火二 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 44) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 44) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.AOE)) return (int)CheckResult.QT关闭;
 
@@ -19,13 +19,13 @@ public class 火二 : ISlotResolver
 
         if (Data.Me.Object?.CurrentMp < 800) return (int)CheckResult.资源不足;
 
-        var level = HelperRuntime.GetCurrentLevel();
+        var level = GameHelper.GetCurrentLevel();
         return level >= 94 ? (int)BLMHelper.高烈炎 : (int)BLMHelper.烈炎;
     }
 
     public void Build(Slot slot)
     {
-        var level = HelperRuntime.GetCurrentLevel();
+        var level = GameHelper.GetCurrentLevel();
         var id = level >= 94 ? BLMHelper.高烈炎 : BLMHelper.烈炎;
         slot.Add(new Spell { Id = id, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
     }

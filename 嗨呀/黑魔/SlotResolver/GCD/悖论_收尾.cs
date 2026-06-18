@@ -7,7 +7,7 @@ public class 悖论_收尾 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 90) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 90) return (int)CheckResult.等级不足;
 
         if (!BLMHelper.火状态 || BLMHelper.火层数 < 3) return (int)CheckResult.状态不符;
 

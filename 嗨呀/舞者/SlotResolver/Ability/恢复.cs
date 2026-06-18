@@ -6,7 +6,7 @@ public class 恢复 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 52) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 52) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(BuiltinQt.Mitigation)) return (int)CheckResult.QT关闭;
 

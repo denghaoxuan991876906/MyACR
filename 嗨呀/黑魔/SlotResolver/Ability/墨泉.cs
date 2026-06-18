@@ -6,7 +6,7 @@ public class 墨泉 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 30) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 30) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled("墨泉")) return (int)CheckResult.QT关闭;
 
@@ -16,7 +16,7 @@ public class 墨泉 : ISlotResolver
 
         if (Data.Me.Object?.CurrentMp > 800 || BLMHelper.耀星层数 == 6) return (int)CheckResult.资源不足;
 
-        if (HelperRuntime.GetGCDCooldown() < 400) return (int)CheckResult.冷却中;
+        if (GameHelper.GetGCDCooldown() < 400) return (int)CheckResult.冷却中;
 
         return 1;
     }

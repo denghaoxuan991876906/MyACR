@@ -8,7 +8,7 @@ public class 精雕怒斩 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 56) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 56) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.精雕怒斩)) return (int)CheckResult.QT关闭;
 
@@ -18,7 +18,7 @@ public class 精雕怒斩 : ISlotResolver
 
         if (Data.Target.Current != null && Data.Me.Object?.Distance(Data.Target.Current) > 5) return (int)CheckResult.目标无效;
 
-        if (HelperRuntime.GetGCDCooldown() < 400) return (int)CheckResult.技能未就绪;
+        if (GameHelper.GetGCDCooldown() < 400) return (int)CheckResult.技能未就绪;
 
         return 1;
     }

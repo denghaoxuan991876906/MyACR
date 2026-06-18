@@ -7,13 +7,13 @@ public class 异言 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 80) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 80) return (int)CheckResult.等级不足;
 
         if (QTHelper.IsEnabled(QTKey.AOE) && BLMHelper.群怪模式) return (int)CheckResult.群怪模式;
 
         if (BLMHelper.通晓数 <= 0) return (int)CheckResult.资源不足;
 
-        var level = HelperRuntime.GetCurrentLevel();
+        var level = GameHelper.GetCurrentLevel();
         if (level >= 98)
         {
             if (BLMHelper.通晓数 >= 3) return (int)BLMHelper.异言;

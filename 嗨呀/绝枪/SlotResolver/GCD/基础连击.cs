@@ -9,12 +9,12 @@ public class 基础连击 : ISlotResolver
     {
         if (QTHelper.IsEnabled(QTKey.AOE))
         {
-            var count = HelperRuntime.GetNearbyEnemyCount(5);
+            var count = GameHelper.GetNearbyEnemyCount(5);
             if (count >= 3)
             {
                 if (ComboHelper.LastComboSpellId == GNBHelper.恶魔切)
                     return (int)GNBHelper.恶魔杀;
-                if (HelperRuntime.GetCurrentLevel() >= 40)
+                if (GameHelper.GetCurrentLevel() >= 40)
                     return (int)GNBHelper.恶魔切;
                 return (int)CheckResult.等级不足;
             }
@@ -22,14 +22,14 @@ public class 基础连击 : ISlotResolver
 
         if (ComboHelper.LastComboSpellId == GNBHelper.残暴弹技能 || ComboHelper.LastComboSpellId == GNBHelper.残暴弹)
         {
-            if (HelperRuntime.GetCurrentLevel() >= 60)
+            if (GameHelper.GetCurrentLevel() >= 60)
                 return (int)GNBHelper.讯连斩;
             return (int)CheckResult.等级不足;
         }
 
         if (ComboHelper.LastComboSpellId == GNBHelper.利刃斩)
         {
-            if (HelperRuntime.GetCurrentLevel() >= 26)
+            if (GameHelper.GetCurrentLevel() >= 26)
                 return (int)GNBHelper.残暴弹技能;
             return (int)CheckResult.等级不足;
         }

@@ -7,7 +7,7 @@ public class 玄冰 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 40) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 40) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.AOE)) return (int)CheckResult.QT关闭;
 

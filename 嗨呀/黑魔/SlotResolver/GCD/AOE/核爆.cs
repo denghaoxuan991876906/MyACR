@@ -7,7 +7,7 @@ public class 核爆 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 50) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 50) return (int)CheckResult.等级不足;
         
         if (Data.Me.Object?.CurrentMp < 800) return (int)CheckResult.资源不足;
         

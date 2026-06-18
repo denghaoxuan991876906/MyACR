@@ -8,7 +8,7 @@ public class AOE连击 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 40) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 40) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.AOE) || !DRKHelper.群怪模式) return (int)CheckResult.群怪模式;
 

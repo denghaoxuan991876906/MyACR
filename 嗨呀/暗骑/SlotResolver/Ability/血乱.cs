@@ -8,7 +8,7 @@ public class 血乱 : ISlotResolver
 {
     public int Check()
     {
-        if (HelperRuntime.GetCurrentLevel() < 68) return (int)CheckResult.等级不足;
+        if (GameHelper.GetCurrentLevel() < 68) return (int)CheckResult.等级不足;
 
         if (!QTHelper.IsEnabled(QTKey.血乱)) return (int)CheckResult.QT关闭;
 
@@ -18,7 +18,7 @@ public class 血乱 : ISlotResolver
 
         if (DRKHelper.血乱激活) return (int)CheckResult.状态不符;
 
-        if (HelperRuntime.GetGCDCooldown() < 400) return (int)CheckResult.技能未就绪;
+        if (GameHelper.GetGCDCooldown() < 400) return (int)CheckResult.技能未就绪;
 
         return 1;
     }
