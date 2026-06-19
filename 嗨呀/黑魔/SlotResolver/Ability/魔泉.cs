@@ -17,9 +17,7 @@ public class 魔泉 : ISlotResolver
         if (BLMHelper.耀星层数 == 6 && GameHelper.GetCurrentLevel() == 100) return (int)CheckResult.状态不符;
         if (GameHelper.GetGCDCooldown() < 500) return (int)CheckResult.技能未就绪;
 
-        var bd = BLM_BattleData.Instance;
-        if (bd.前一gcd is BLMHelper.冰澈 or BLMHelper.玄冰 && bd.前一能力技 == BLMHelper.星灵移位)
-            return (int)CheckResult.状态不符;
+
 
         return 0;
     }

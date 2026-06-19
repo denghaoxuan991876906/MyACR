@@ -27,12 +27,12 @@ public class 火单90 : ISlotResolver
             if (BLMHelper.火层数 < 3)
             {
                 if (BLMHelper.Has火苗) return BLMHelper.爆炎;
-                if (BLMHelper.悖论指示) return BLMHelper.悖论;
+                if (BLMHelper.悖论指示 && QTHelper.IsEnabled(QTKey.火悖论)) return BLMHelper.悖论;
                 return BLMHelper.爆炎;
             }
 
             if (mp >= 800 && mp < 2400) return BLMHelper.绝望;
-            if (mp >= 2400 && mp < 4000 && BLMHelper.悖论指示) return BLMHelper.悖论;
+            if (mp >= 2400 && mp < 4000 && BLMHelper.悖论指示 && QTHelper.IsEnabled(QTKey.火悖论)) return BLMHelper.悖论;
             return BLMHelper.炽焰;
         }
 

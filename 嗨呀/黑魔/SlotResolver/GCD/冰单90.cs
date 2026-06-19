@@ -1,4 +1,5 @@
 using 嗨呀.黑魔.SlotResolver.BLMData;
+using 嗨呀.黑魔.UI;
 
 namespace 嗨呀.黑魔.SlotResolver.GCD;
 
@@ -26,7 +27,7 @@ public class 冰单90 : ISlotResolver
         {
             if (BLMHelper.冰层数 < 3) return BLMHelper.冰封;
             if (BLMHelper.冰针数 < 3 || bd.三冰针进冰) return BLMHelper.冰澈;
-            if (BLMHelper.悖论指示) return BLMHelper.悖论;
+            if (BLMHelper.悖论指示 && QTHelper.IsEnabled(QTKey.冰悖论)) return BLMHelper.悖论;
             return 0;
         }
 

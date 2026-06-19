@@ -12,8 +12,22 @@ public class 即刻 : ISlotResolver
         if (!SpellHelper.CanUseSpell(BLMHelper.即可咏唱)) return (int)CheckResult.冷却中;
         if (BLMHelper.可瞬发) return (int)CheckResult.状态不符;
         if (BLMHelper.群怪模式) return (int)CheckResult.群怪模式;
-        if (!BLMHelper.冰状态 || BLMHelper.冰层数 >= 3) return (int)CheckResult.状态不符;
-        if (GameHelper.RecentlyUsedSpell(BLMHelper.冰封, 2500)) return (int)CheckResult.最近已用;
+        if (BLMHelper.火状态)
+        {
+            if (GameHelper.RecentlyUsedSpell(BLMHelper.星灵移位, 2000)) return (int)CheckResult.状态不符;
+            if (QTHelper.IsEnabled(QTKey.墨泉) && SpellHelper.CanUseSpell(BLMHelper.魔泉) && BLMHelper.火状态) return (int)CheckResult.状态不符;
+            if (BLM_BattleData.火尾三连前需先清瞬发()) return (int)CheckResult.状态不符;
+            if (SpellHelper.GetCharges(BLMHelper.三连咏唱) >= 1) return (int)CheckResult.状态不符;
+
+            var mp = Data.Me.Object?.CurrentMp ?? 0;
+            if (mp >= 800 && mp < 2400) return 0;
+            return (int)CheckResult.状态不符;
+        }
+
+        if (!BLMHelper.冰状态) return (int)CheckResult.状态不符;
+        if (GameHelper.RecentlyUsedSpell(BLMHelper.冰封, 1500)) return (int)CheckResult.状态不符;
+        if (BLMHelper.冰层数 >= 3) return (int)CheckResult.状态不符;
+        if (BLMHelper.可瞬发) return (int)CheckResult.状态不符;
         if (GameHelper.GetGCDCooldown() < 600) return (int)CheckResult.技能未就绪;
         return 0;
     }

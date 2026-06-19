@@ -15,6 +15,7 @@ public class 星灵移位 : ISlotResolver
 
         if (BLMHelper.火状态)
         {
+            if (!BLM_BattleData.在转冰整理区()) return (int)CheckResult.状态不符;
             var mp = Data.Me.Object?.CurrentMp ?? 0;
             if (mp >= 800) return (int)CheckResult.状态不符;
             if (BLMHelper.耀星层数 == 6 && GameHelper.GetCurrentLevel() == 100) return (int)CheckResult.状态不符;
@@ -34,9 +35,7 @@ public class 星灵移位 : ISlotResolver
 
         if (BLMHelper.冰状态)
         {
-            if (QTHelper.IsEnabled(QTKey.冰悖论) && BLMHelper.悖论指示) return (int)CheckResult.状态不符;
-            if (BLMHelper.冰层数 != 3 && !bd.冰阶段已放冰澈) return (int)CheckResult.状态不符;
-            if (BLMHelper.冰针数 != 3 || bd.三冰针进冰) return (int)CheckResult.状态不符;
+            if (!BLM_BattleData.可回火()) return (int)CheckResult.状态不符;
             return 0;
         }
 

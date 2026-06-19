@@ -22,27 +22,35 @@ public class 冰单100 : ISlotResolver
     {
         var bd = BLM_BattleData.Instance;
         var mp = Data.Me.Object?.CurrentMp ?? 0;
-        var 即刻可在下个Gcd内使用 = SpellHelper.CanUseSpell(BLMHelper.即可咏唱)
-            || SpellHelper.GetCooldownRemaining(BLMHelper.即可咏唱) < GCDHelper.GetGCDDuration();
 
-        if (BLMHelper.火状态 && mp < 800 && BLMHelper.耀星层数 != 6)
+        // 无状态：高蓝去进火，低蓝先进冰恢复
+        if (!BLMHelper.火状态 && !BLMHelper.冰状态)
         {
-            if (bd.前一gcd is BLMHelper.冰澈 or BLMHelper.玄冰 && bd.前一能力技 == BLMHelper.星灵移位)
-                return 0;
-            if (BLM_BattleData.应先用魔泉())
-                return 0;
+            if (mp >= 6600) return 0;
+
             return BLMHelper.冰封;
         }
+        if (BLMHelper.火状态)
+        {
+            var 可等三连 = QTHelper.IsEnabled(QTKey.三连) && SpellHelper.GetCharges(BLMHelper.三连咏唱) >= 1;
+            var 可等即刻 = QTHelper.IsEnabled(QTKey.即刻) && SpellHelper.GetCooldownRemaining(BLMHelper.即可咏唱) <= 1000.0f;
+            if (mp < 800 && !BLM_BattleData.应先用魔泉() && !BLMHelper.可瞬发 && !可等三连 && !可等即刻)
+                return BLMHelper.冰封;
+            return 0;
+        }
 
-        if (BLMHelper.冰状态)
+
+        if (BLM_BattleData.需要转冰补能力窗口())
+        {
+            if (BLM_BattleData.转冰整理补能力窗口SkillId() != 0)
+                return 0;
+        }
+
+        // 正常冰段回复：先稳定冰3，再补冰针，最后处理冰悖论
+        if (BLM_BattleData.在进冰回复区())
         {
             if (BLMHelper.冰层数 < 3)
-            {
-                if (BLMHelper.悖论指示 && BLM_BattleData.有转冰瞬发资源() && !BLMHelper.可瞬发)
-                    return BLMHelper.悖论;
-                if (BLMHelper.可瞬发)
-                    return BLMHelper.冰封;
-            }
+                return BLMHelper.冰封;
 
             if (BLMHelper.冰针数 < 3 || bd.三冰针进冰)
                 return BLMHelper.冰澈;
@@ -51,13 +59,6 @@ public class 冰单100 : ISlotResolver
                 return BLMHelper.悖论;
 
             return 0;
-        }
-
-        if (!BLMHelper.冰状态 && !BLMHelper.火状态)
-        {
-            if (即刻可在下个Gcd内使用 && BLMHelper.悖论指示 && !BLMHelper.可瞬发)
-                return BLMHelper.悖论;
-            return BLMHelper.冰封;
         }
 
         return 0;
