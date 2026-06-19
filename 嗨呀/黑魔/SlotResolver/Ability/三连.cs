@@ -53,3 +53,5 @@ public class 三连 : ISlotResolver
         slot.Add(new Spell { Id = BLMHelper.三连咏唱, TargetType = SpellTargetType.Self, Type = SpellType.Ability });
     }
 }
+
+

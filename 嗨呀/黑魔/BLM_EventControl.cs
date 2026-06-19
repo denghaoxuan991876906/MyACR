@@ -8,11 +8,7 @@ public class BLM_EventControl : IRotationEventHandler
     private readonly HashSet<string> _printedCallbacks = [];
     private readonly HashSet<Type> _printedEventTypes = [];
 
-    private void PrintOnce(string callback)
-    {
-        if (_printedCallbacks.Add(callback))
-            Hi.Print($"[{DateTime.Now:HH:mm:ss.fff}] {callback}");
-    }
+
 
     public void OnPreCombat()
     {
@@ -29,12 +25,15 @@ public class BLM_EventControl : IRotationEventHandler
 
     public void OnSpellCastSuccess(Slot slot, Spell spell)
     {
-        PrintOnce($"OnSpellCastSuccess: {spell.Name} (Id={spell.Id})");
+        var bd = BLM_BattleData.Instance;
+        if (spell.Id is BLMHelper.冰澈)
+        {
+            bd.高级循环_冰澈读条完成 = true;
+        }
     }
 
     public Slot? BeforeSpell(Slot slot)
     {
-        PrintOnce($"BeforeSpell: {slot.Actions[0]?.Spell.Name} (Id={slot.Actions[0]?.Spell.Id})");
         return null;
     }
 
@@ -123,36 +122,35 @@ public class BLM_EventControl : IRotationEventHandler
             bd.前一能力技 = spell.Id;
         }
 
-        // 高级循环流程追踪：冰澈(读条)→星灵→绝望
-        if (QTHelper.IsEnabled(QTKey.高级循环))
-        {
-            if (spell.Id is BLMHelper.冰澈 && !bd.上一gcd瞬发)
-            {
-                bd.高级循环_星灵已完成 = false;
-                bd.高级循环_冰澈读条完成 = true;
-                bd.高级循环_读条冰澈Gcd = spell.Id;
-            }
-            else if (spell.Id is BLMHelper.星灵移位 && bd.高级循环_冰澈读条完成
-                && 释放前gcd == bd.高级循环_读条冰澈Gcd)
-            {
-                bd.高级循环_冰澈读条完成 = false;
-                bd.高级循环_星灵已完成 = true;
-            }
-            else if (spell.Id is BLMHelper.绝望 && bd.高级循环_星灵已完成
-                && 释放前能力技 == BLMHelper.星灵移位
-                && 释放前gcd == bd.高级循环_读条冰澈Gcd)
-            {
-                bd.高级循环_星灵已完成 = false;
-                bd.高级循环_读条冰澈Gcd = 0;
-            }
-            else if ((是黑魔Gcd || 是黑魔能力技)
-                && (bd.高级循环_冰澈读条完成 || bd.高级循环_星灵已完成))
-            {
-                bd.高级循环_冰澈读条完成 = false;
-                bd.高级循环_星灵已完成 = false;
-                bd.高级循环_读条冰澈Gcd = 0;
-            }
-        }
+
+
+        // // 高级循环流程追踪：冰澈(读条)→星灵→绝望
+        // if (QTHelper.IsEnabled(QTKey.高级循环))
+        // {
+        //     if (spell.Id is BLMHelper.星灵移位 && bd.高级循环_冰澈读条完成
+        //                     && 释放前gcd == bd.高级循环_读条冰澈Gcd)
+        //     {
+        //         Hi.Debug($"[高级循环追踪] 星灵完成分支 释放前gcd={释放前gcd} 释放前能力={释放前能力技} 读条冰澈Gcd={bd.高级循环_读条冰澈Gcd} 冰澈读条完成={bd.高级循环_冰澈读条完成} 星灵已完成={bd.高级循环_星灵已完成}");
+        //         bd.高级循环_冰澈读条完成 = false;
+        //         bd.高级循环_星灵已完成 = true;
+        //     }
+        //     else if (spell.Id is BLMHelper.绝望 && bd.高级循环_星灵已完成
+        //         && 释放前能力技 == BLMHelper.星灵移位
+        //         && 释放前gcd == bd.高级循环_读条冰澈Gcd)
+        //     {
+        //         Hi.Debug($"[高级循环追踪] 绝望收尾分支 释放前gcd={释放前gcd} 释放前能力={释放前能力技} 读条冰澈Gcd={bd.高级循环_读条冰澈Gcd} 冰澈读条完成={bd.高级循环_冰澈读条完成} 星灵已完成={bd.高级循环_星灵已完成}");
+        //         bd.高级循环_星灵已完成 = false;
+        //         bd.高级循环_读条冰澈Gcd = 0;
+        //     }
+        //     else if ((是黑魔Gcd || 是黑魔能力技)
+        //         && (bd.高级循环_冰澈读条完成 || bd.高级循环_星灵已完成))
+        //     {
+        //         Hi.Debug($"[高级循环追踪] 兜底清空分支 spell={spell.Id} 释放前gcd={释放前gcd} 释放前能力={释放前能力技} 读条冰澈Gcd={bd.高级循环_读条冰澈Gcd} 冰澈读条完成={bd.高级循环_冰澈读条完成} 星灵已完成={bd.高级循环_星灵已完成}");
+        //         bd.高级循环_冰澈读条完成 = false;
+        //         bd.高级循环_星灵已完成 = false;
+        //         bd.高级循环_读条冰澈Gcd = 0;
+        //     }
+        // }
     }
 
     public void OnBattleUpdate(int battleTimeMs)
@@ -245,11 +243,11 @@ public class BLM_EventControl : IRotationEventHandler
 
     public void OnGameEvent(ITriggerCondParams eventParams)
     {
-        
+
     }
 
     public void OnPhaseChanged(string phaseId, string phaseName)
     {
-        
+
     }
 }

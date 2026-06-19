@@ -1,4 +1,4 @@
-using 嗨呀.黑魔.SlotResolver.BLMData;
+﻿using 嗨呀.黑魔.SlotResolver.BLMData;
 using 嗨呀.黑魔.UI;
 
 namespace 嗨呀.黑魔.SlotResolver.GCD;
@@ -46,3 +46,5 @@ public class 冰单90 : ISlotResolver
         slot.Add(new Spell { Id = _skillId, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
     }
 }
+
+

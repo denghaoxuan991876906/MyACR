@@ -30,3 +30,5 @@ public class 异言 : ISlotResolver
         slot.Add(new Spell { Id = BLMHelper.异言, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
     }
 }
+
+

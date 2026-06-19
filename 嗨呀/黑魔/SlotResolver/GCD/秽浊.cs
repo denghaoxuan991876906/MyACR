@@ -30,3 +30,5 @@ public class 秽浊 : ISlotResolver
         slot.Add(new Spell { Id = BLMHelper.秽浊, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
     }
 }
+
+

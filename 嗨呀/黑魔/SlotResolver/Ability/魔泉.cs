@@ -27,3 +27,5 @@ public class 魔泉 : ISlotResolver
         slot.Add(new Spell { Id = BLMHelper.魔泉, TargetType = SpellTargetType.Self, Type = SpellType.Ability });
     }
 }
+
+

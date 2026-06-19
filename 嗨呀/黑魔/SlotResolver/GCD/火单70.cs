@@ -1,4 +1,4 @@
-using 嗨呀.黑魔.SlotResolver.BLMData;
+﻿using 嗨呀.黑魔.SlotResolver.BLMData;
 
 namespace 嗨呀.黑魔.SlotResolver.GCD;
 
@@ -40,3 +40,5 @@ public class 火单70 : ISlotResolver
         slot.Add(new Spell { Id = _skillId, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
     }
 }
+
+

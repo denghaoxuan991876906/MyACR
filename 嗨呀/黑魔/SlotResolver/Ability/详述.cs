@@ -30,3 +30,5 @@ public class 详述 : ISlotResolver
         slot.Add(new Spell { Id = BLMHelper.详述, TargetType = SpellTargetType.Self, Type = SpellType.Ability });
     }
 }
+
+

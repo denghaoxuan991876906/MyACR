@@ -94,7 +94,8 @@ public class BLM_Open100 :IOpener
         slot.Add(new Spell { Id = BLMHelper.核爆, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
         slot.Add(new Spell { Id = BLMHelper.耀星, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
         if (!QTHelper.IsEnabled(QTKey.起手不三连))
-            slot.Add(new Spell { Id = BLMHelper.星灵移位, TargetType = SpellTargetType.Self, Type = SpellType.Ability });
+            slot.Add(new Spell { Id = BLMHelper.星灵移位, TargetType = SpellTargetType.Self, Type = SpellType.Ability },
+                waitServerAcq: true, gcdGuardMs: 800);
         else
         {
             slot.Add(new Spell { Id = BLMHelper.冰封, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
@@ -102,3 +103,5 @@ public class BLM_Open100 :IOpener
 
     }
 }
+
+

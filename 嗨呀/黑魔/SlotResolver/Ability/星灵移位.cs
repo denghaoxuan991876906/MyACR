@@ -1,4 +1,4 @@
-using 嗨呀.黑魔.SlotResolver.BLMData;
+﻿using 嗨呀.黑魔.SlotResolver.BLMData;
 using 嗨呀.黑魔.UI;
 
 namespace 嗨呀.黑魔.SlotResolver.Ability;
@@ -44,6 +44,7 @@ public class 星灵移位 : ISlotResolver
 
     public void Build(Slot slot)
     {
-        slot.Add(new Spell { Id = BLMHelper.星灵移位, TargetType = SpellTargetType.Self, Type = SpellType.Ability });
+        slot.Add(new Spell { Id = BLMHelper.星灵移位, TargetType = SpellTargetType.Self, Type = SpellType.Ability },
+            waitServerAcq: true);
     }
 }

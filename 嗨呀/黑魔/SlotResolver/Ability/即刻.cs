@@ -38,3 +38,5 @@ public class 即刻 : ISlotResolver
         slot.Add(new Spell { Id = BLMHelper.即可咏唱, TargetType = SpellTargetType.Self, Type = SpellType.Ability });
     }
 }
+
+

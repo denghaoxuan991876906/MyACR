@@ -19,3 +19,5 @@ public class 高闪雷 : ISlotResolver
         slot.Add(new Spell { Id = BLMHelper.高闪雷, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
     }
 }
+
+

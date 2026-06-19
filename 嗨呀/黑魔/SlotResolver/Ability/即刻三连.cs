@@ -1,4 +1,4 @@
-using 嗨呀.黑魔.SlotResolver.BLMData;
+﻿using 嗨呀.黑魔.SlotResolver.BLMData;
 using 嗨呀.黑魔.UI;
 
 namespace 嗨呀.黑魔.SlotResolver.Ability;
@@ -34,3 +34,5 @@ public class 即刻三连 : ISlotResolver
         return 0;
     }
 }
+
+

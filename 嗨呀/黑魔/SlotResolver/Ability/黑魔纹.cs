@@ -21,3 +21,5 @@ public class 黑魔纹 : ISlotResolver
         slot.Add(new Spell { Id = BLMHelper.黑魔纹, TargetType = SpellTargetType.Self, Type = SpellType.Ability });
     }
 }
+
+

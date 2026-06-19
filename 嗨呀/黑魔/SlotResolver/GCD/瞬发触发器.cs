@@ -1,4 +1,4 @@
-using 嗨呀.黑魔.SlotResolver.BLMData;
+﻿using 嗨呀.黑魔.SlotResolver.BLMData;
 using 嗨呀.黑魔.UI;
 
 namespace 嗨呀.黑魔.SlotResolver.GCD;
@@ -85,3 +85,5 @@ public class 瞬发触发器 : ISlotResolver
         return -1;
     }
 }
+
+
