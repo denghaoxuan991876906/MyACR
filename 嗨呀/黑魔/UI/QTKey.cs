@@ -15,4 +15,5 @@ public class QTKey
     public const string 冰悖论 = "冰悖论";
     public const string 火悖论 = "火悖论";
     public const string 起手不三连 = "起手不三连";
+    public const string 灵极魂 = "灵极魂";
 }

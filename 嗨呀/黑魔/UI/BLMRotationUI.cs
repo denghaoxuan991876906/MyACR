@@ -14,7 +14,7 @@ public class BLMRotationUI : IRotationUI
         builder.AddBuiltinQt(BuiltinQt.AoE, true);
         builder.AddBuiltinQt(BuiltinQt.TTK, false);
 
-        builder.AddQtToggle(QTKey.三连,  true);
+        builder.AddQtToggle(QTKey.三连, true);
         builder.AddQtToggle(QTKey.即刻, true);
         builder.AddQtToggle(QTKey.墨泉, true);
         builder.AddQtToggle(QTKey.黑魔纹, true);
@@ -24,22 +24,23 @@ public class BLMRotationUI : IRotationUI
         builder.AddQtToggle(QTKey.高级循环, false);
         builder.AddQtToggle(QTKey.冰悖论, true);
         builder.AddQtToggle(QTKey.火悖论, true);
-        
+        builder.AddQtToggle(QTKey.灵极魂, true, "无目标时使用");
+
         builder.AddQtHotkey("爆发药", new HotkeyResolver_吃药("爆发药", 49237));
         builder.AddQtHotkey("黑魔纹", new HotkeyResolver_技能("黑魔纹", BLMHelper.黑魔纹));
-        
+
         builder.AddTab("Test");
         builder.AddLabel("label测试");
         var booltest = BLM_Setting.Instance.test1;
         if (builder.AddCheckbox("checkbox测试", ref booltest))
         {
-            BLM_Setting.Instance.test1 =  booltest;
+            BLM_Setting.Instance.test1 = booltest;
             BLM_Setting.Instance.Save();
         }
         var inttest = BLM_Setting.Instance.test2;
-        if(builder.AddIntInput("intinput测试", ref inttest))
+        if (builder.AddIntInput("intinput测试", ref inttest))
         {
-            BLM_Setting.Instance.test2 =  inttest;
+            BLM_Setting.Instance.test2 = inttest;
             BLM_Setting.Instance.Save();
         }
 
@@ -49,6 +50,6 @@ public class BLMRotationUI : IRotationUI
             DLog.Debug($"{nameof(BLM_Setting.Instance.test2)}:{BLM_Setting.Instance.test2}");
         }
         builder.EndTab();
-        
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using 嗨呀.黑魔.UI;
+﻿using HiAuRo.Runtime;
+using 嗨呀.黑魔.UI;
 
 namespace 嗨呀.黑魔;
 
@@ -18,9 +19,38 @@ public class BLM_EventControl : IRotationEventHandler
     {
         BLM_BattleData.Instance.Reset();
     }
-
+    private int _lastCombatTime;
+    private bool _noTarget;
     public void OnNoTarget()
     {
+        // 战斗时间小于10秒时不处理
+        if (Hi.BattleTimeMs < 10 * 1000) return;
+
+        // 重置技能状态标志
+        BLM_BattleData.Instance.需要即刻 = false;
+        BLM_BattleData.Instance.需要瞬发gcd = false;
+        BLM_BattleData.Instance.高级循环_冰澈读条完成 = false;
+        // 处理Boss上天特殊情况
+        if (QTHelper.IsEnabled(QTKey.灵极魂))
+        {
+            if (BLMHelper.火状态 && SpellHelper.IsActionReady(BLMHelper.CN.Skills.星灵移位))
+            {
+                var slot = new Slot();
+                slot.Add(new Spell(BLMHelper.CN.Skills.星灵移位, SpellTargetType.Self));
+                ACRLifecycle.Runner.SpellQueue.Enqueue(slot);
+            }
+
+            // 冰状态且条件满足时使用灵极魂
+            if (BLMHelper.冰状态 && (BLMHelper.冰层数 < 3 || BLMHelper.冰针数 < 3 || Data.Me.Object?.CurrentMp < 10000))
+            {
+                if (GCDHelper.GetGCDCooldown() > 0) return;
+                {
+                    var slot = new Slot();
+                    slot.Add(new Spell(BLMHelper.CN.Skills.星灵移位, SpellTargetType.Self));
+                    ACRLifecycle.Runner.SpellQueue.Enqueue(slot);
+                }
+            }
+        }
     }
 
     public void OnSpellCastSuccess(Slot slot, Spell spell)
