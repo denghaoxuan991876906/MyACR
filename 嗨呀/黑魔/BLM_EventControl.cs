@@ -49,7 +49,7 @@ public class BLM_EventControl : IRotationEventHandler
             or BLMHelper.震雷 or BLMHelper.霹雷 or BLMHelper.高震雷
             or BLMHelper.冰结 or BLMHelper.冰封 or BLMHelper.冰澈 or BLMHelper.玄冰
             or BLMHelper.高冰冻 or BLMHelper.冰冻 or BLMHelper.灵极魂;
-        var 是黑魔能力技 = spell.Id is BLMHelper.即可咏唱 or BLMHelper.三连咏唱 or BLMHelper.星灵移位
+        var 是黑魔能力技 = spell.Id is BLMHelper.即刻咏唱 or BLMHelper.三连咏唱 or BLMHelper.星灵移位
             or BLMHelper.魔泉 or BLMHelper.详述 or BLMHelper.黑魔纹 or BLMHelper.醒梦 or BLMHelper.昏乱;
 
         if (bd.AfterSpell.Count > 40)
@@ -222,7 +222,7 @@ public class BLM_EventControl : IRotationEventHandler
             var 耀星 = (!bd.火阶段已放耀星 && BLMHelper.耀星层数 + 剩余火4 >= 6) ? 1 : 0;
             var gcdCount = 剩余火4 + 悖论 + 1 + 耀星 + 1; // +1绝望 +耀星(届时满6层) +1冰三
             bd.到冰三预估时间 = gcdCount * GCDHelper.GetGCDDuration();
-            bd.即刻能转好 = SpellHelper.GetCooldownRemaining(BLMHelper.即可咏唱) < bd.到冰三预估时间;
+            bd.即刻能转好 = SpellHelper.GetCooldownRemaining(BLMHelper.即刻咏唱) < bd.到冰三预估时间;
             if (n == 4)
                 bd.需要三连 = !bd.即刻能转好;
         }

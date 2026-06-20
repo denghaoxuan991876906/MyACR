@@ -25,8 +25,8 @@ public class 星灵移位 : ISlotResolver
             if (BLMHelper.可瞬发) return 0;
             if (GameHelper.GetCurrentLevel() < 100) return (int)CheckResult.状态不符;
 
-            var 即刻下个Gcd内可用 = SpellHelper.CanUseSpell(BLMHelper.即可咏唱)
-                || SpellHelper.GetCooldownRemaining(BLMHelper.即可咏唱) < GCDHelper.GetGCDDuration();
+            var 即刻下个Gcd内可用 = SpellHelper.CanUseSpell(BLMHelper.即刻咏唱)
+                || SpellHelper.GetCooldownRemaining(BLMHelper.即刻咏唱) < GCDHelper.GetGCDDuration();
             var 三连可用 = QTHelper.IsEnabled(QTKey.三连) && SpellHelper.GetCharges(BLMHelper.三连咏唱) >= 1;
             if (!即刻下个Gcd内可用 && !三连可用)
                 return (int)CheckResult.状态不符;

@@ -33,7 +33,7 @@ public class 冰单100 : ISlotResolver
         if (BLMHelper.火状态)
         {
             var 可等三连 = QTHelper.IsEnabled(QTKey.三连) && SpellHelper.GetCharges(BLMHelper.三连咏唱) >= 1;
-            var 可等即刻 = QTHelper.IsEnabled(QTKey.即刻) && SpellHelper.GetCooldownRemaining(BLMHelper.即可咏唱) <= 1000.0f;
+            var 可等即刻 = QTHelper.IsEnabled(QTKey.即刻) && SpellHelper.GetCooldownRemaining(BLMHelper.即刻咏唱) <= 1000.0f;
             if (mp < 800 && !BLM_BattleData.应先用魔泉() && !BLMHelper.可瞬发 && !可等三连 && !可等即刻)
                 return BLMHelper.冰封;
             return 0;
@@ -72,5 +72,3 @@ public class 冰单100 : ISlotResolver
         slot.Add(new Spell { Id = _skillId, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
     }
 }
-
-

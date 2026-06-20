@@ -30,9 +30,7 @@ public class 即刻三连 : ISlotResolver
     {
         if (BLMHelper.可瞬发) return 0;
         if (QTHelper.IsEnabled(QTKey.三连) && SpellHelper.GetCharges(BLMHelper.三连咏唱) >= 1) return BLMHelper.三连咏唱;
-        if (SpellHelper.CanUseSpell(BLMHelper.即可咏唱)) return BLMHelper.即可咏唱;
+        if (SpellHelper.CanUseSpell(BLMHelper.即刻咏唱)) return BLMHelper.即刻咏唱;
         return 0;
     }
 }
-
-

@@ -23,12 +23,12 @@ public class 三连 : ISlotResolver
             if (QTHelper.IsEnabled(QTKey.墨泉) && SpellHelper.CanUseSpell(BLMHelper.魔泉) && BLMHelper.火状态) return (int)CheckResult.状态不符;
             if (BLM_BattleData.火尾三连前需先清瞬发()) return (int)CheckResult.状态不符;
 
-            var 即刻剩余 = SpellHelper.GetCooldownRemaining(BLMHelper.即可咏唱);
+            var 即刻剩余 = SpellHelper.GetCooldownRemaining(BLMHelper.即刻咏唱);
             var 即刻三Gcd内可用 = 即刻剩余 < GCDHelper.GetGCDDuration() * 3;
             var mp = Data.Me.Object?.CurrentMp ?? 0;
 
             if (mp <= 4400 && BLMHelper.耀星层数 >= 5 && GameHelper.GetCurrentLevel() == 100
-                && !SpellHelper.CanUseSpell(BLMHelper.即可咏唱) && !即刻三Gcd内可用)
+                && !SpellHelper.CanUseSpell(BLMHelper.即刻咏唱) && !即刻三Gcd内可用)
                 return 0;
 
             return (int)CheckResult.状态不符;
@@ -40,7 +40,7 @@ public class 三连 : ISlotResolver
             if (GameHelper.RecentlyUsedSpell(BLMHelper.冰封, 1500)) return (int)CheckResult.状态不符;
             if (BLMHelper.冰层数 >= 3) return (int)CheckResult.状态不符;
             if (BLMHelper.可瞬发) return (int)CheckResult.状态不符;
-            if (QTHelper.IsEnabled(QTKey.即刻) && SpellHelper.CanUseSpell(BLMHelper.即可咏唱)) return (int)CheckResult.状态不符;
+            if (QTHelper.IsEnabled(QTKey.即刻) && SpellHelper.CanUseSpell(BLMHelper.即刻咏唱)) return (int)CheckResult.状态不符;
             return 0;
         }
 
@@ -53,5 +53,3 @@ public class 三连 : ISlotResolver
         slot.Add(new Spell { Id = BLMHelper.三连咏唱, TargetType = SpellTargetType.Self, Type = SpellType.Ability });
     }
 }
-
-

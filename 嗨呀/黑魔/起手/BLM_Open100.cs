@@ -4,9 +4,9 @@ using 嗨呀.黑魔.设置;
 
 namespace 嗨呀.黑魔.起手;
 
-public class BLM_Open100 :IOpener
+public class BLM_Open100 : IOpener
 {
-    
+
     public void InitCountDown(CountDownHandler handler)
     {
         if (BLM_Setting.Instance.提前黑魔纹)
@@ -43,7 +43,7 @@ public class BLM_Open100 :IOpener
     {
         slot.Add(new Spell { Id = GameHelper.GetActionChange(BLMHelper.闪雷), TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
 
-        slot.Add(new Spell { Id = BLMHelper.即可咏唱, TargetType = SpellTargetType.Self, Type = SpellType.Ability });
+        slot.Add(new Spell { Id = BLMHelper.即刻咏唱, TargetType = SpellTargetType.Self, Type = SpellType.Ability });
         slot.Add(new Spell { Id = BLMHelper.详述, TargetType = SpellTargetType.Self, Type = SpellType.Ability });
         slot.Add(new Spell { Id = BLMHelper.炽焰, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
         if (QTHelper.IsEnabled("爆发药"))
@@ -103,5 +103,3 @@ public class BLM_Open100 :IOpener
 
     }
 }
-
-

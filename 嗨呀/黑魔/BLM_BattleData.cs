@@ -67,7 +67,7 @@ public class BLM_BattleData
     public static bool 有转冰瞬发资源()
     {
         if (BLMHelper.Has即刻 || BLMHelper.Has三连) return true;
-        if (QTHelper.IsEnabled(QTKey.即刻) && SpellHelper.CanUseSpell(BLMHelper.即可咏唱)) return true;
+        if (QTHelper.IsEnabled(QTKey.即刻) && SpellHelper.CanUseSpell(BLMHelper.即刻咏唱)) return true;
         if (QTHelper.IsEnabled(QTKey.三连) && SpellHelper.GetCharges(BLMHelper.三连咏唱) >= 1) return true;
         return false;
     }
@@ -77,7 +77,7 @@ public class BLM_BattleData
         if (GameHelper.GetCurrentLevel() < 58) return false;
         if (!QTHelper.IsEnabled(QTKey.墨泉)) return false;
         if (!BLMHelper.火状态) return false;
-        if (!SpellHelper.CanUseSpell(BLMHelper.魔泉)) return false;
+        if (SpellHelper.GetCooldownRemaining(BLMHelper.魔泉) < 1000) return false;
 
         var mp = Data.Me.Object?.CurrentMp ?? 0;
         if (mp > 800) return false;
@@ -92,8 +92,6 @@ public class BLM_BattleData
     {
         if (!BLMHelper.火状态) return false;
         if (BLMHelper.火层数 < 3) return false;
-        if (火尾三连前需先清瞬发()) return false;
-        if (应先用魔泉()) return false;
         return true;
     }
 
@@ -212,9 +210,9 @@ public class BLM_BattleData
         if (BLMHelper.耀星层数 < 5) return 0;
         if (SpellHelper.GetCharges(BLMHelper.三连咏唱) < 1) return 0;
 
-        var 即刻剩余 = SpellHelper.GetCooldownRemaining(BLMHelper.即可咏唱);
+        var 即刻剩余 = SpellHelper.GetCooldownRemaining(BLMHelper.即刻咏唱);
         var 即刻三Gcd内可用 = 即刻剩余 < GCDHelper.GetGCDDuration() * 3;
-        if (SpellHelper.CanUseSpell(BLMHelper.即可咏唱) || 即刻三Gcd内可用) return 0;
+        if (SpellHelper.CanUseSpell(BLMHelper.即刻咏唱) || 即刻三Gcd内可用) return 0;
 
         // 火尾在准备开三连时，先把现成的瞬发GCD清掉，避免三连覆盖浪费。
         if (BLMHelper.悖论指示 && QTHelper.IsEnabled(QTKey.火悖论)) return BLMHelper.悖论;
