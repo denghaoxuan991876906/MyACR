@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "hiya",
+  "publisherName": "嗨呀",
+  "homepage": "https://github.com/denghaoxuan991876906/MyACR",
+  "contact": "",
+  "acrs": [
+    {
+      "acrId": "hiya-blm",
+      "name": "嗨呀黑魔",
+      "manifestUrl": "https://raw.githubusercontent.com/denghaoxuan991876906/MyACR/master/hiya-blm.manifest.json"
+    }
+  ]
+}

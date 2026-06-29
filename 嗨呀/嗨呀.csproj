@@ -58,4 +58,7 @@
       <Folder Include="黑魔\SlotResolver\Ability\" />
       <Folder Include="黑魔\SlotResolver\GCD\" />
     </ItemGroup>
+    <ItemGroup>
+      <None Include="嗨呀.json" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
 </Project>

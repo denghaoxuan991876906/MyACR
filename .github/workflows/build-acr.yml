@@ -1,0 +1,191 @@
+name: Build & Release ACR
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    env:
+      ACR_PROJECT: 嗨呀/嗨呀.csproj
+      ACR_SLN: 嗨呀.sln
+      ACR_NAME: 嗨呀
+      ACR_ID: hiya-blm
+      ACR_MANIFEST: hiya-blm.manifest.json
+      ACR_DISPLAY_NAME: 嗨呀黑魔
+      PUBLISHER_ID: hiya
+      PUBLISHER_NAME: 嗨呀
+      TARGETS_JSON: '["BLM"]'
+      OUTPUT_DIR: out
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Resolve version metadata
+        shell: pwsh
+        run: |
+          $csproj = $env:ACR_PROJECT
+          $localJson = "$env:ACR_NAME/$env:ACR_NAME.json"
+          $manifest = $env:ACR_MANIFEST
+          $publisher = "publisher.json"
+          $repo = "${{ github.repository }}"
+          $rawBranch = "${{ github.ref_name }}"
+
+          if ($env:GITHUB_REF_TYPE -eq "tag") {
+            $version = $env:GITHUB_REF_NAME.TrimStart("v")
+          } else {
+            $m = Select-String -Path $csproj -Pattern '<Version>(.*?)</Version>'
+            if (-not $m -or $m.Matches.Count -eq 0) {
+              throw "Cannot find <Version> in $csproj"
+            }
+
+            $cur = $m.Matches[0].Groups[1].Value
+            $p = $cur.Split('.')
+            if ($p.Count -ne 3) {
+              throw "Version must use major.minor.patch, got $cur"
+            }
+
+            $version = "$([int]$p[0]).$([int]$p[1]).$([int]$p[2] + 1)"
+            Write-Host "Bump version: $cur -> $version"
+            (Get-Content $csproj) -replace "<Version>$cur</Version>", "<Version>$version</Version>" | Set-Content -Encoding UTF8 $csproj
+          }
+
+          $tagName = "v$version"
+          $packageUrl = "https://github.com/$repo/releases/download/$tagName/$env:ACR_ID.zip"
+          $manifestUrl = if ($env:GITHUB_REF_TYPE -eq "tag") {
+            "https://github.com/$repo/releases/download/$tagName/$env:ACR_MANIFEST"
+          } else {
+            "https://raw.githubusercontent.com/$repo/$rawBranch/$env:ACR_MANIFEST"
+          }
+
+          $localObj = Get-Content $localJson -Raw | ConvertFrom-Json
+          $localObj.PublisherId = $env:PUBLISHER_ID
+          $localObj.PublisherName = $env:PUBLISHER_NAME
+          $localObj.AcrId = $env:ACR_ID
+          $localObj.DisplayName = $env:ACR_DISPLAY_NAME
+          $localObj.Version = $version
+          $localObj.EntryDll = "$env:ACR_NAME.dll"
+          $localObj | ConvertTo-Json -Depth 8 | Set-Content -Encoding UTF8 $localJson
+
+          $manifestObj = Get-Content $manifest -Raw | ConvertFrom-Json
+          $manifestObj.acrId = $env:ACR_ID
+          $manifestObj.name = $env:ACR_DISPLAY_NAME
+          $manifestObj.author = $env:PUBLISHER_NAME
+          $manifestObj.targets = @($env:TARGETS_JSON | ConvertFrom-Json)
+          $manifestObj.latestVersion = $version
+          $manifestObj.packageUrl = $packageUrl
+          $manifestObj.entryDll = "$env:ACR_NAME.dll"
+          $manifestObj | ConvertTo-Json -Depth 8 | Set-Content -Encoding UTF8 $manifest
+
+          $publisherObj = Get-Content $publisher -Raw | ConvertFrom-Json
+          $publisherObj.publisherId = $env:PUBLISHER_ID
+          $publisherObj.publisherName = $env:PUBLISHER_NAME
+          $publisherObj.homepage = "https://github.com/$repo"
+          $publisherObj.acrs[0].acrId = $env:ACR_ID
+          $publisherObj.acrs[0].name = $env:ACR_DISPLAY_NAME
+          $publisherObj.acrs[0].manifestUrl = $manifestUrl
+          $publisherObj | ConvertTo-Json -Depth 8 | Set-Content -Encoding UTF8 $publisher
+
+          "RELEASE_VERSION=$version" >> $env:GITHUB_ENV
+          "RELEASE_TAG=$tagName" >> $env:GITHUB_ENV
+
+      - name: Restore
+        run: dotnet restore "${{ env.ACR_SLN }}"
+
+      - name: Build
+        run: dotnet build "${{ env.ACR_SLN }}" -c Release --no-restore
+
+      - name: Collect ACR payload
+        shell: pwsh
+        run: |
+          $publishDir = "$env:OUTPUT_DIR\$env:ACR_ID"
+          New-Item -ItemType Directory -Force -Path $publishDir | Out-Null
+
+          $buildDir = "$env:ACR_NAME\bin\Release"
+          Copy-Item "$buildDir\$env:ACR_NAME.dll" "$publishDir\"
+          Copy-Item "$buildDir\$env:ACR_NAME.json" "$publishDir\"
+
+          if (Test-Path "$buildDir\$env:ACR_NAME.deps.json") {
+            Copy-Item "$buildDir\$env:ACR_NAME.deps.json" "$publishDir\"
+          }
+          if (Test-Path "$buildDir\$env:ACR_NAME.pdb") {
+            Copy-Item "$buildDir\$env:ACR_NAME.pdb" "$publishDir\"
+          }
+
+      - name: Pack zip
+        shell: pwsh
+        run: |
+          Compress-Archive -Path "$env:OUTPUT_DIR\$env:ACR_ID\*" -DestinationPath "$env:OUTPUT_DIR\$env:ACR_ID.zip" -Force
+
+      - name: Generate release copies
+        shell: pwsh
+        run: |
+          $repo = "${{ github.repository }}"
+          $base = "https://github.com/$repo/releases/download/$env:RELEASE_TAG"
+
+          $manifest = Get-Content "$env:ACR_MANIFEST" -Raw | ConvertFrom-Json
+          $manifest.latestVersion = $env:RELEASE_VERSION
+          $manifest.packageUrl = "$base/$env:ACR_ID.zip"
+          $manifest.sha256 = (Get-FileHash "$env:OUTPUT_DIR\$env:ACR_ID.zip" -Algorithm SHA256).Hash.ToLower()
+          $manifest.publishedAt = [DateTimeOffset]::UtcNow.ToString("o")
+          $manifest | ConvertTo-Json -Depth 8 | Set-Content -Encoding UTF8 "$env:OUTPUT_DIR\$env:ACR_MANIFEST"
+
+          $publisher = Get-Content "publisher.json" -Raw | ConvertFrom-Json
+          $publisher.publisherId = $env:PUBLISHER_ID
+          $publisher.publisherName = $env:PUBLISHER_NAME
+          $publisher.homepage = "https://github.com/$repo"
+          $publisher.acrs[0].acrId = $env:ACR_ID
+          $publisher.acrs[0].name = $env:ACR_DISPLAY_NAME
+          $publisher.acrs[0].manifestUrl = "$base/$env:ACR_MANIFEST"
+          $publisher | ConvertTo-Json -Depth 8 | Set-Content -Encoding UTF8 "$env:OUTPUT_DIR\publisher.json"
+
+      - name: Commit and tag bumped version
+        if: github.ref_type != 'tag'
+        shell: pwsh
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "$env:ACR_PROJECT" "$env:ACR_NAME/$env:ACR_NAME.json" "$env:ACR_MANIFEST" publisher.json
+          git commit -m "chore: bump version to $env:RELEASE_TAG [skip ci]"
+          git tag "$env:RELEASE_TAG"
+          git push origin HEAD:${{ github.ref_name }}
+          git push origin "$env:RELEASE_TAG"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ env.ACR_ID }}
+          path: |
+            ${{ env.OUTPUT_DIR }}/${{ env.ACR_ID }}
+            ${{ env.OUTPUT_DIR }}/${{ env.ACR_ID }}.zip
+            ${{ env.OUTPUT_DIR }}/${{ env.ACR_MANIFEST }}
+            ${{ env.OUTPUT_DIR }}/publisher.json
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          files: |
+            ${{ env.OUTPUT_DIR }}/${{ env.ACR_ID }}.zip
+            ${{ env.OUTPUT_DIR }}/${{ env.ACR_MANIFEST }}
+            ${{ env.OUTPUT_DIR }}/publisher.json
+          generate_release_notes: true

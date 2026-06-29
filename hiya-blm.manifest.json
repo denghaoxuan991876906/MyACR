@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "acrId": "hiya-blm",
+  "name": "嗨呀黑魔",
+  "author": "嗨呀",
+  "description": "嗨呀黑魔 ACR",
+  "targets": [
+    "BLM"
+  ],
+  "latestVersion": "1.0.0",
+  "minHiAuRoVersion": "",
+  "maxHiAuRoVersion": "",
+  "packageUrl": "https://github.com/denghaoxuan991876906/MyACR/releases/download/v1.0.0/hiya-blm.zip",
+  "sha256": "",
+  "publishedAt": "",
+  "changelog": "",
+  "entryDll": "嗨呀.dll"
+}

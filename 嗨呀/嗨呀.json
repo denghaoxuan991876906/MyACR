@@ -1,0 +1,9 @@
+{
+  "PublisherId": "hiya",
+  "PublisherName": "嗨呀",
+  "AcrId": "hiya-blm",
+  "DisplayName": "嗨呀黑魔",
+  "Version": "1.0.0",
+  "EntryDll": "嗨呀.dll",
+  "SourceUrl": ""
+}

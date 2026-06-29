@@ -1,6 +1,7 @@
 /.idea
 /嗨呀/obj
 /嗨呀/bin
+/out/
 嗨呀/packages.lock.json
 *.user
 opencode.json
