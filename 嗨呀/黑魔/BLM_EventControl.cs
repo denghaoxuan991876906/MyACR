@@ -1,4 +1,5 @@
 ﻿using HiAuRo.Runtime;
+using 嗨呀.黑魔.SlotResolver.GCD;
 using 嗨呀.黑魔.UI;
 
 namespace 嗨呀.黑魔;
@@ -147,6 +148,9 @@ public class BLM_EventControl : IRotationEventHandler
             else _释放技能时状态 = 0;
         }
 
+        if (bd.已使用瞬发)
+            bd.需要瞬发gcd = false;
+
         if (是黑魔能力技)
         {
             bd.前一能力技 = spell.Id;
@@ -226,7 +230,10 @@ public class BLM_EventControl : IRotationEventHandler
         {
             if (bd.需要瞬发gcd)
                 return;
-            bd.需要即刻 = true;
+            if (瞬发触发器.可用瞬发() > 0)
+                bd.需要瞬发gcd = true;
+            else
+                bd.需要即刻 = true;
         }
 
         if (Data.Me.Object?.IsCasting == true)

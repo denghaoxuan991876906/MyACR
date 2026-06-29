@@ -28,7 +28,7 @@ public class 瞬发触发器 : ISlotResolver
             slot.Add(new Spell { Id = (uint)skillId, TargetType = SpellTargetType.Target, Type = SpellType.RealGcd });
     }
 
-    private static int 可用瞬发()
+    public static int 可用瞬发()
     {
         var level = GameHelper.GetCurrentLevel();
         if (BLMHelper.群怪模式)

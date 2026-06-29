@@ -59,7 +59,9 @@ public class BLM_BattleData
 
     public static bool 在发呆()
     {
+        if (Data.Me.Object?.IsDead == true) return false;
         if (!Data.Combat.InCombat) return false;
+        if (Data.Me.Object?.IsCasting == true) return false;
         if (GameHelper.GetGCDCooldown() > 0) return false;
         return true;
     }
